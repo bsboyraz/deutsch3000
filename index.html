@@ -8382,9 +8382,65 @@ bin.</li>
   _a1LessonKeyCache.clear();
 })();
 
-ensureA1Profile();updateA1HomeProgress();
 
+
+/* ===== A1 OVERVIEW LAYOUT REPAIR ===== */
+function renderA1AcademySafe(){
+  try{ ensureA1Profile(); }catch(e){}
+  const overview=document.getElementById('a1Overview');
+  const detail=document.getElementById('a1LessonDetail');
+  const hero=document.getElementById('a1Hero');
+  const grid=document.getElementById('a1LessonGrid');
+  const checklist=document.getElementById('a1Checklist');
+  if(!overview||!detail||!hero||!grid||!checklist) return;
+
+  overview.style.display='block';
+  detail.classList.remove('active');
+
+  const lessons=Array.isArray(A1_LESSONS)?A1_LESSONS:[];
+  let total=lessons.length;
+  let done=0, totalWords=0, mastered=0, pct=0;
+  try{ done=lessons.filter(l=>{ try{return isA1LessonDone(l.id)}catch(e){return false} }).length; }catch(e){}
+  try{ const a1=a1AllWords(); totalWords=a1.length; mastered=a1.filter(w=>status(w.id).mastered).length; }catch(e){}
+  try{ pct=a1OverallProgressPct(); }catch(e){ pct=total?Math.round(done*100/total):0; }
+
+  hero.innerHTML=`<div class="a1-hero-grid"><div><div class="small-muted">A1 Deutsch Mastery</div><div class="a1-big">${pct}%</div><div class="progress"><i style="width:${pct}%"></i></div><div class="small-muted">${done}/${total} ders tamamlandı · ${mastered}/${totalWords} A1 kelime öğrenildi</div><div class="source-note">A1 konuları burada kartlar halinde görünür. Bir karta tıklayarak konu anlatımı, gramer ve kelime bölümüne geçebilirsin.</div></div><div class="a1-kpis"><div class="a1-kpi"><b>${total}</b><span>Ders</span></div><div class="a1-kpi"><b>${totalWords}</b><span>A1 kelime</span></div><div class="a1-kpi"><b>${mastered}</b><span>Öğrenilen</span></div></div></div>`;
+
+  grid.innerHTML=lessons.map((l,i)=>{
+    let wc=0, score=0, doneMark=false;
+    try{ wc=a1WordsForLesson(l).length; }catch(e){}
+    try{ score=a1LessonScore(l.id); }catch(e){}
+    try{ doneMark=isA1LessonDone(l.id); }catch(e){}
+    return `<button class="lesson-card" onclick="openA1Lesson('${String(l.id).replace(/'/g,"\\'")}')"><div class="lesson-top"><div style="display:flex;gap:10px"><span class="lesson-num">${String(i+1).padStart(2,'0')}</span><div><div class="lesson-title">${l.icon?esc(l.icon)+' ':''}${esc(l.title||'Ders')}</div><div class="lesson-sub">${esc(l.subtitle||'')}</div></div></div><span class="lesson-done">${doneMark?'✅':'⬜'}</span></div><div class="lesson-mini"><span class="mini-pill">📚 ${wc} kelime</span><span class="mini-pill">🧠 ${esc(l.grammar||'A1 gramer')}</span><span class="mini-pill">%${score} ilerleme</span></div></button>`;
+  }).join('');
+
+  checklist.innerHTML=lessons.map((l,i)=>{
+    let score=0, doneMark=false;
+    try{ score=a1LessonScore(l.id); }catch(e){}
+    try{ doneMark=isA1LessonDone(l.id); }catch(e){}
+    return `<div class="check-item" onclick="openA1Lesson('${String(l.id).replace(/'/g,"\\'")}')"><span class="check-box ${doneMark?'done':''}">${doneMark?'✓':''}</span><div><div class="check-title">${i+1}. ${esc(l.title||'Ders')}</div><div class="check-meta">%${score} ilerleme · açmak için tıkla</div></div></div>`;
+  }).join('');
+}
+
+// Orijinal render fonksiyonunu güvenli sürümle değiştir.
+renderA1Academy = renderA1AcademySafe;
+
+// A1 sayfası açılınca mutlaka kartları yeniden çiz.
+const _openPageRepairBase = openPage;
+openPage = function(id){
+  _openPageRepairBase(id);
+  if(id==='a1academy'){
+    try{ renderA1AcademySafe(); }catch(e){}
+    setTimeout(()=>{ try{ renderA1AcademySafe(); }catch(e){} },0);
+  }
+};
+
+ensureA1Profile();updateA1HomeProgress();
 renderHome();
+if(document.getElementById('a1academy')?.classList.contains('active')){
+  try{ renderA1AcademySafe(); }catch(e){}
+}
+
 </script>
 </body>
 </html>
