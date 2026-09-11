@@ -190,7 +190,7 @@ table{width:100%;border-collapse:collapse} th,td{padding:10px;border-bottom:1px 
         <div class="page-title-row">
           <div class="page-title">
             <h1>Deutsch 3000</h1>
-            <p>A1–B2 kelime hedefin</p>
+            <p>A1–B2 kelime hedefin</p> 
           </div>
           <button class="btn primary" onclick="quickStart()">Çalışmaya Başla →</button>
         </div>
@@ -1535,6 +1535,2219 @@ openPage=function(id){
 // Profil oluşturma/geri yükleme sonrası A1 alanını da güvenli şekilde hazırla.
 const _renderHomeA1Base=renderHome;
 renderHome=function(){_renderHomeA1Base();ensureA1Profile();updateA1HomeProgress()};
+  /* =========================================================
+   FOOD LESSON PATCH — Yiyecek & İçecek
+   Bunu en altta, şu satırdan HEMEN ÖNCE yapıştır:
+   ensureA1Profile();updateA1HomeProgress();
+   ========================================================= */
+
+
+// =========================================================
+// 1. EKSİK A1 YİYECEK KELİMELERİNİ EKLE
+// =========================================================
+
+const FOOD_EXTRA_WORDS = [
+
+  {
+    id:'a1food_001',
+    level:'A1',
+    type:'noun',
+    word:'Abendessen',
+    display:'das Abendessen',
+    tr:'akşam yemeği',
+    article:'das',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_002',
+    level:'A1',
+    type:'noun',
+    word:'Abendbrot',
+    display:'das Abendbrot',
+    tr:'akşam yemeği, akşam ekmek öğünü',
+    article:'das',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_003',
+    level:'A1',
+    type:'noun',
+    word:'Orangensaft',
+    display:'der Orangensaft',
+    tr:'portakal suyu',
+    article:'der',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_004',
+    level:'A1',
+    type:'noun',
+    word:'Cola',
+    display:'die Cola',
+    tr:'kola',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_005',
+    level:'A1',
+    type:'noun',
+    word:'Pasta',
+    display:'die Pasta',
+    tr:'makarna',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_006',
+    level:'A1',
+    type:'noun',
+    word:'Gurke',
+    display:'die Gurke',
+    tr:'salatalık',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_007',
+    level:'A1',
+    type:'noun',
+    word:'Zwiebel',
+    display:'die Zwiebel',
+    tr:'soğan',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_008',
+    level:'A1',
+    type:'noun',
+    word:'Karotte',
+    display:'die Karotte',
+    tr:'havuç',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_009',
+    level:'A1',
+    type:'noun',
+    word:'Paprika',
+    display:'die Paprika',
+    tr:'biber',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_010',
+    level:'A1',
+    type:'noun',
+    word:'Spinat',
+    display:'der Spinat',
+    tr:'ıspanak',
+    article:'der',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_011',
+    level:'A1',
+    type:'noun',
+    word:'Pilz',
+    display:'der Pilz',
+    tr:'mantar',
+    article:'der',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_012',
+    level:'A1',
+    type:'noun',
+    word:'Erdbeere',
+    display:'die Erdbeere',
+    tr:'çilek',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_013',
+    level:'A1',
+    type:'noun',
+    word:'Kirsche',
+    display:'die Kirsche',
+    tr:'kiraz',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_014',
+    level:'A1',
+    type:'noun',
+    word:'Weintraube',
+    display:'die Weintraube',
+    tr:'üzüm',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_015',
+    level:'A1',
+    type:'noun',
+    word:'Pfirsich',
+    display:'der Pfirsich',
+    tr:'şeftali',
+    article:'der',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_016',
+    level:'A1',
+    type:'noun',
+    word:'Melone',
+    display:'die Melone',
+    tr:'kavun',
+    article:'die',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_017',
+    level:'A1',
+    type:'other',
+    word:'Was möchten Sie?',
+    display:'Was möchten Sie?',
+    tr:'Ne arzu edersiniz?',
+    article:'',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_018',
+    level:'A1',
+    type:'other',
+    word:'Was darf es sein?',
+    display:'Was darf es sein?',
+    tr:'Ne alırdınız?',
+    article:'',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_019',
+    level:'A1',
+    type:'other',
+    word:'Sonst noch etwas?',
+    display:'Sonst noch etwas?',
+    tr:'Başka bir şey var mıydı?',
+    article:'',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_020',
+    level:'A1',
+    type:'other',
+    word:'Das ist alles.',
+    display:'Das ist alles.',
+    tr:'Hepsi bu.',
+    article:'',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_021',
+    level:'A1',
+    type:'other',
+    word:'Zusammen oder getrennt?',
+    display:'Zusammen oder getrennt?',
+    tr:'Birlikte mi, ayrı ayrı mı?',
+    article:'',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_022',
+    level:'A1',
+    type:'other',
+    word:'Die Rechnung, bitte.',
+    display:'Die Rechnung, bitte.',
+    tr:'Hesap lütfen.',
+    article:'',
+    sourceSection:'A1 FOOD'
+  },
+
+  {
+    id:'a1food_023',
+    level:'A1',
+    type:'other',
+    word:'Wir möchten zahlen.',
+    display:'Wir möchten zahlen.',
+    tr:'Hesabı ödemek istiyoruz.',
+    article:'',
+    sourceSection:'A1 FOOD'
+  }
+
+];
+
+
+FOOD_EXTRA_WORDS.forEach(w => {
+
+  if(
+    !WORDS.some(
+      x => x.level === 'A1' && x.word === w.word
+    )
+  ){
+    WORDS.push(w);
+  }
+
+});
+
+
+
+// =========================================================
+// 2. YİYECEK DERSİNİN ÖZEL KELİME LİSTESİ
+// =========================================================
+
+const FOOD_VOCAB_ORDER = [
+
+  // Öğünler
+  'Frühstück',
+  'Mittagessen',
+  'Abendessen',
+  'Abendbrot',
+
+  // Genel
+  'Essen',
+  'Getränk',
+  'Hunger',
+  'Durst',
+  'Appetit',
+
+  // İçecekler
+  'Kaffee',
+  'Tee',
+  'Wasser',
+  'Saft',
+  'Orangensaft',
+  'Milch',
+  'Cola',
+
+  // Temel yiyecekler
+  'Brot',
+  'Brötchen',
+  'Butter',
+  'Käse',
+  'Ei',
+
+  'Suppe',
+  'Pizza',
+  'Pasta',
+  'Kuchen',
+
+  'Fleisch',
+  'Fisch',
+  'Reis',
+  'Salat',
+
+  'Salz',
+  'Zucker',
+
+  // Genel kategoriler
+  'Obst',
+  'Gemüse',
+
+  // Meyveler
+  'Apfel',
+  'Banane',
+  'Birne',
+  'Erdbeere',
+  'Orange',
+  'Zitrone',
+  'Kirsche',
+  'Weintraube',
+  'Pfirsich',
+  'Melone',
+
+  // Sebzeler
+  'Kartoffel',
+  'Tomate',
+  'Gurke',
+  'Zwiebel',
+  'Karotte',
+  'Paprika',
+  'Spinat',
+  'Pilz',
+
+  // Fiiller
+  'essen',
+  'trinken',
+  'kochen',
+  'schmecken',
+  'möchten',
+  'nehmen',
+  'bestellen',
+  'zahlen',
+  'bezahlen',
+
+  // Restoran
+  'Speisekarte',
+  'Rechnung',
+  'Restaurant',
+
+  // Kalıplar
+  'Was möchten Sie?',
+  'Was darf es sein?',
+  'Sonst noch etwas?',
+  'Das ist alles.',
+  'Zusammen oder getrennt?',
+  'Die Rechnung, bitte.',
+  'Wir möchten zahlen.'
+
+];
+
+
+
+// =========================================================
+// 3. KONU ANLATIMINI DETAYLANDIR
+// =========================================================
+
+const FOOD_LESSON =
+  A1_LESSONS.find(l => l.id === 'food');
+
+
+if(FOOD_LESSON){
+
+  Object.assign(
+    FOOD_LESSON,
+    {
+
+      title:
+        'Yiyecek & İçecek',
+
+      subtitle:
+        'Market, öğünler, sipariş, tercihler ve temel Akkusativ',
+
+      grammar:
+        'möchten · essen/trinken · gern/lieber · kein/nicht · Akkusativ',
+
+      types:[
+        'noun',
+        'verb',
+        'adjective',
+        'other'
+      ],
+
+      keys:[
+
+        'Essen',
+        'Getränk',
+
+        'Frühstück',
+        'Mittagessen',
+        'Abendessen',
+        'Abendbrot',
+
+        'Brot',
+        'Brötchen',
+        'Butter',
+        'Käse',
+
+        'Milch',
+        'Kaffee',
+        'Tee',
+        'Wasser',
+        'Saft',
+        'Orangensaft',
+        'Cola',
+
+        'Apfel',
+        'Banane',
+        'Birne',
+        'Erdbeere',
+        'Orange',
+        'Zitrone',
+        'Kirsche',
+        'Weintraube',
+        'Pfirsich',
+        'Melone',
+
+        'Kartoffel',
+        'Tomate',
+        'Gurke',
+        'Zwiebel',
+        'Karotte',
+        'Paprika',
+        'Spinat',
+        'Pilz',
+
+        'Gemüse',
+        'Obst',
+
+        'Fleisch',
+        'Fisch',
+        'Reis',
+        'Salat',
+        'Suppe',
+        'Pizza',
+        'Pasta',
+
+        'Salz',
+        'Zucker',
+        'Kuchen',
+
+        'Hunger',
+        'Durst',
+        'Appetit',
+
+        'essen',
+        'trinken',
+        'kochen',
+        'schmecken',
+
+        'möchten',
+        'nehmen',
+        'bestellen',
+
+        'zahlen',
+        'bezahlen',
+
+        'Speisekarte',
+        'Rechnung',
+        'Restaurant'
+
+      ],
+
+
+      theory:`
+
+<h2>
+🍎 Yiyecek, İçecek ve Sipariş
+</h2>
+
+
+<p>
+Almancada market alışverişi yaparken,
+restoranda sipariş verirken veya
+beslenme alışkanlıklarından bahsederken
+belirli kelimeler,
+istek kalıpları ve
+<b>Akkusativ</b>
+çekimi birlikte kullanılır.
+</p>
+
+
+
+<h3>
+1. Öğünler ve Temel Fiiller
+</h3>
+
+
+<p>
+<b>Öğünler — hepsi das:</b>
+</p>
+
+
+<div class="theory-box">
+
+<b>
+das Frühstück
+</b>
+= kahvaltı
+
+<br>
+
+<small>
+frühstücken = kahvaltı yapmak
+</small>
+
+<br><br>
+
+
+<b>
+das Mittagessen
+</b>
+= öğle yemeği
+
+<br><br>
+
+
+<b>
+das Abendessen
+</b>
+=
+akşam yemeği
+
+<br>
+
+<b>
+das Abendbrot
+</b>
+=
+akşam yemeği
+
+</div>
+
+
+
+<h3>
+essen
+</h3>
+
+
+<p>
+<b>essen</b>
+“yemek yemek” demektir.
+Düzensiz bir fiildir.
+Özellikle
+<b>du</b>
+ve
+<b>er / sie / es</b>
+çekiminde
+<b>e → i</b>
+değişimi olur.
+</p>
+
+
+<div class="theory-box">
+
+ich
+<b>esse</b>
+
+<br>
+
+du
+<b>isst</b>
+
+<br>
+
+er / sie / es
+<b>isst</b>
+
+<br>
+
+wir
+<b>essen</b>
+
+<br>
+
+ihr
+<b>esst</b>
+
+<br>
+
+sie / Sie
+<b>essen</b>
+
+</div>
+
+
+<p>
+Örnek:
+</p>
+
+
+<div class="theory-box">
+
+Ich
+<b>esse</b>
+Brot.
+
+<br>
+
+Du
+<b>isst</b>
+eine Pizza.
+
+<br>
+
+Er
+<b>isst</b>
+einen Apfel.
+
+<br>
+
+Wir
+<b>essen</b>
+zusammen.
+
+</div>
+
+
+
+<h3>
+trinken
+</h3>
+
+
+<p>
+<b>trinken</b>
+“içmek” demektir.
+Düzenli çekilir.
+</p>
+
+
+<div class="theory-box">
+
+ich
+<b>trinke</b>
+
+<br>
+
+du
+<b>trinkst</b>
+
+<br>
+
+er / sie / es
+<b>trinkt</b>
+
+<br>
+
+wir
+<b>trinken</b>
+
+<br>
+
+ihr
+<b>trinkt</b>
+
+<br>
+
+sie / Sie
+<b>trinken</b>
+
+</div>
+
+
+<div class="theory-box">
+
+Ich trinke Kaffee.
+
+<br>
+
+Du trinkst Tee.
+
+<br>
+
+Wir trinken Wasser.
+
+</div>
+
+
+
+<h3>
+schmecken
+</h3>
+
+
+<p>
+<b>schmecken</b>
+bir şeyin tadını anlatmak için kullanılır.
+</p>
+
+
+<div class="theory-box">
+
+Das
+<b>schmeckt gut!</b>
+
+<br>
+
+Bu lezzetli.
+
+<br><br>
+
+
+Der Kaffee
+<b>schmeckt super.</b>
+
+<br>
+
+Kahvenin tadı harika.
+
+</div>
+
+
+
+<h3>
+2. Sipariş Verme ve İstemek:
+„möchte“
+</h3>
+
+
+<p>
+Kafede,
+restoranda veya fırında
+kibarca bir şey isterken
+<b>ich möchte...</b>
+kullanılır.
+</p>
+
+
+<div class="theory-box">
+
+Ich möchte einen Kaffee.
+
+<br>
+
+Bir kahve istiyorum.
+
+<br><br>
+
+
+Ich möchte eine Suppe.
+
+<br>
+
+Bir çorba istiyorum.
+
+<br><br>
+
+
+Ich möchte ein Wasser.
+
+<br>
+
+Bir su istiyorum.
+
+</div>
+
+
+
+<p>
+İstenen yiyecek veya içecek
+cümlenin nesnesidir.
+Bu nedenle
+<b>Akkusativ</b>
+olur.
+</p>
+
+
+
+<h3>
+Maskulin: der → einen
+</h3>
+
+
+<div class="theory-box">
+
+der Kaffee
+
+<br>
+
+↓
+
+<br>
+
+Ich möchte
+<b>einen Kaffee</b>.
+
+
+<br><br>
+
+
+der Tee
+
+<br>
+
+↓
+
+<br>
+
+Ich trinke
+<b>einen Tee</b>.
+
+
+<br><br>
+
+
+der Apfel
+
+<br>
+
+↓
+
+<br>
+
+Ich esse
+<b>einen Apfel</b>.
+
+</div>
+
+
+
+<h3>
+Neutral: das → ein
+</h3>
+
+
+<div class="theory-box">
+
+das Wasser
+
+<br>
+
+↓
+
+<br>
+
+Ich möchte
+<b>ein Wasser</b>.
+
+
+<br><br>
+
+
+das Brötchen
+
+<br>
+
+↓
+
+<br>
+
+Ich esse
+<b>ein Brötchen</b>.
+
+</div>
+
+
+
+<h3>
+Feminin: die → eine
+</h3>
+
+
+<div class="theory-box">
+
+die Suppe
+
+<br>
+
+↓
+
+<br>
+
+Ich nehme
+<b>eine Suppe</b>.
+
+
+<br><br>
+
+
+die Pizza
+
+<br>
+
+↓
+
+<br>
+
+Ich esse
+<b>eine Pizza</b>.
+
+</div>
+
+
+
+<h3>
+Çoğul ve sayılamayan yiyecekler
+</h3>
+
+
+<div class="theory-box">
+
+Ich möchte
+<b>zwei Brötchen</b>.
+
+<br><br>
+
+Ich trinke gern
+<b>Milch</b>.
+
+<br><br>
+
+Ich esse gern
+<b>Obst</b>.
+
+</div>
+
+
+
+<h3>
+3. gern ve lieber
+</h3>
+
+
+<p>
+Bir eylemi severek yaptığını
+söylemek için
+<b>gern</b>
+kullanılır.
+</p>
+
+
+<div class="theory-box">
+
+Ich esse
+<b>gern</b>
+Pizza.
+
+<br>
+
+Pizza yemeyi severim.
+
+<br><br>
+
+
+Ich trinke
+<b>gern</b>
+Tee.
+
+<br>
+
+Çay içmeyi severim.
+
+</div>
+
+
+
+<p>
+İki seçenek arasında
+birini daha çok tercih ediyorsan
+<b>lieber</b>
+kullanılır.
+</p>
+
+
+<div class="theory-box">
+
+Ich esse gern Pizza,
+
+<br>
+
+aber ich esse
+<b>lieber Pasta</b>.
+
+<br><br>
+
+Pizza severim
+ama makarnayı daha çok tercih ederim.
+
+</div>
+
+
+
+<h3>
+nicht gern
+</h3>
+
+
+<div class="theory-box">
+
+Ich trinke
+<b>nicht gern</b>
+Cola.
+
+<br>
+
+Kola içmeyi sevmem.
+
+</div>
+
+
+
+<h3>
+4. kein ve nicht
+</h3>
+
+
+<p>
+Bir yiyecek veya içecek
+<b>ismi</b>
+olumsuzlanıyorsa
+genellikle
+<b>kein</b>
+kullanılır.
+</p>
+
+
+<div class="theory-box">
+
+Ich esse
+<b>kein Fleisch</b>.
+
+<br>
+
+Et yemiyorum.
+
+<br><br>
+
+
+Ich trinke
+<b>keinen Kaffee</b>.
+
+<br>
+
+Kahve içmiyorum.
+
+<br><br>
+
+
+Ich esse
+<b>keine Tomaten</b>.
+
+<br>
+
+Domates yemiyorum.
+
+</div>
+
+
+
+<p>
+Fiili veya sıfatı
+olumsuzlarken
+<b>nicht</b>
+kullanılır.
+</p>
+
+
+<div class="theory-box">
+
+Die Suppe ist
+<b>nicht heiß</b>.
+
+<br>
+
+Çorba sıcak değil.
+
+<br><br>
+
+
+Ich koche heute
+<b>nicht</b>.
+
+<br>
+
+Bugün yemek yapmıyorum.
+
+</div>
+
+
+
+<h3>
+5. Restoranda ve Markette Sık Kullanılan Kalıplar
+</h3>
+
+
+<div class="theory-box">
+
+<b>
+Was möchten Sie?
+</b>
+
+<br>
+
+Ne arzu edersiniz?
+
+<br><br>
+
+
+<b>
+Was darf es sein?
+</b>
+
+<br>
+
+Ne alırdınız?
+
+<br><br>
+
+
+<b>
+Ich nehme einen Salat.
+</b>
+
+<br>
+
+Bir salata alayım.
+
+<br><br>
+
+
+<b>
+Sonst noch etwas?
+</b>
+
+<br>
+
+Başka bir şey var mıydı?
+
+<br><br>
+
+
+<b>
+Nein danke,
+das ist alles.
+</b>
+
+<br>
+
+Hayır teşekkürler,
+hepsi bu.
+
+<br><br>
+
+
+<b>
+Zusammen oder getrennt?
+</b>
+
+<br>
+
+Birlikte mi,
+ayrı ayrı mı?
+
+<br><br>
+
+
+<b>
+Wir möchten bitte zahlen.
+</b>
+
+<br>
+
+Hesabı ödemek istiyoruz,
+lütfen.
+
+<br><br>
+
+
+<b>
+Die Rechnung, bitte.
+</b>
+
+<br>
+
+Hesap lütfen.
+
+</div>
+
+
+
+<h3>
+6. Hızlı Özet
+</h3>
+
+
+<table>
+
+<tr>
+<th>Yapı</th>
+<th>Kural</th>
+<th>Örnek</th>
+</tr>
+
+
+<tr>
+
+<td>
+<b>
+İstek bildirme
+</b>
+</td>
+
+<td>
+möchte + Akkusativ
+</td>
+
+<td>
+Ich möchte
+<b>
+einen Orangensaft
+</b>.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<b>
+Sevdiğini söyleme
+</b>
+</td>
+
+<td>
+Fiil + gern
+</td>
+
+<td>
+Wir trinken
+<b>
+gern
+</b>
+Kaffee.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<b>
+Tercih
+</b>
+</td>
+
+<td>
+Fiil + lieber
+</td>
+
+<td>
+Er isst
+<b>
+lieber
+</b>
+Fisch.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<b>
+İsmi olumsuzlama
+</b>
+</td>
+
+<td>
+kein + isim
+</td>
+
+<td>
+Ich trinke
+<b>
+keinen Kaffee
+</b>.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+<b>
+Lezzet
+</b>
+</td>
+
+<td>
+schmecken
+</td>
+
+<td>
+Das Essen
+<b>
+schmeckt sehr gut
+</b>.
+</td>
+
+</tr>
+
+</table>
+
+
+
+<h3>
+7. Hızlı Tarama
+</h3>
+
+
+<div class="theory-box">
+
+1.
+Ich nehme ___ Kaffee.
+<small>
+(einen / ein)
+</small>
+
+<br><br>
+
+
+2.
+Ich esse ___ Brot.
+<small>
+(nicht / kein)
+</small>
+
+<br><br>
+
+
+3.
+Du ___ sehr gern Obst.
+<small>
+(isst / esst)
+</small>
+
+<br><br>
+
+
+4.
+Der Tee ist ___ warm.
+<small>
+(kein / nicht)
+</small>
+
+</div>
+
+`
+
+    }
+  );
+
+}
+
+
+
+// =========================================================
+// 4. KELİME ÇALIŞMASINI BU DERSE ÖZEL YAP
+// =========================================================
+
+const _a1WordsForLessonFoodBase =
+  a1WordsForLesson;
+
+
+a1WordsForLesson = function(l){
+
+
+  if(
+    l &&
+    l.id === 'food'
+  ){
+
+    if(
+      _a1LessonWordsCache.has('food')
+    ){
+
+      return
+        _a1LessonWordsCache.get('food');
+
+    }
+
+
+    const all =
+      a1AllWords();
+
+
+    const byWord =
+      new Map(
+        all.map(
+          w => [w.word,w]
+        )
+      );
+
+
+    const arr =
+      FOOD_VOCAB_ORDER
+
+        .map(
+          name => byWord.get(name)
+        )
+
+        .filter(Boolean);
+
+
+    _a1LessonWordsCache.set(
+      'food',
+      arr
+    );
+
+
+    return arr;
+
+  }
+
+
+  return
+    _a1WordsForLessonFoodBase(l);
+
+};
+
+
+
+// =========================================================
+// 5. YİYECEK KONUSU İÇİN 100+ FARKLI GRAMER SORUSU
+// =========================================================
+
+function grammarFoodVariants(){
+
+
+  const out = [];
+
+
+  const add =
+    (q,a,note='') =>
+      out.push({
+        q,
+        a,
+        note
+      });
+
+
+
+  // -------------------------------------------------------
+  // ESSEN ÇEKİMİ
+  // -------------------------------------------------------
+
+  [
+
+    [
+      'Ich ___ gern Brot. (essen)',
+      'esse'
+    ],
+
+    [
+      'Du ___ gern Pizza. (essen)',
+      'isst'
+    ],
+
+    [
+      'Er ___ einen Apfel. (essen)',
+      'isst'
+    ],
+
+    [
+      'Sie ___ eine Suppe. (essen)',
+      'isst'
+    ],
+
+    [
+      'Das Kind ___ eine Banane. (essen)',
+      'isst'
+    ],
+
+    [
+      'Wir ___ zusammen Frühstück. (essen)',
+      'essen'
+    ],
+
+    [
+      'Ihr ___ heute Reis. (essen)',
+      'esst'
+    ],
+
+    [
+      'Sie ___ gern Gemüse. (essen, onlar)',
+      'essen'
+    ],
+
+    [
+      '___ du gern Obst? (essen)',
+      'Isst'
+    ],
+
+    [
+      'Was ___ er zum Frühstück? (essen)',
+      'isst'
+    ],
+
+    [
+      'Was ___ ihr heute Abend? (essen)',
+      'esst'
+    ],
+
+    [
+      'Ich ___ kein Fleisch. (essen)',
+      'esse'
+    ]
+
+  ].forEach(
+    ([q,a]) =>
+      add(
+        q,
+        a,
+        'essen çekimi'
+      )
+  );
+
+
+
+  // -------------------------------------------------------
+  // TRINKEN ÇEKİMİ
+  // -------------------------------------------------------
+
+  [
+
+    [
+      'Ich ___ morgens Kaffee. (trinken)',
+      'trinke'
+    ],
+
+    [
+      'Du ___ Tee. (trinken)',
+      'trinkst'
+    ],
+
+    [
+      'Er ___ Wasser. (trinken)',
+      'trinkt'
+    ],
+
+    [
+      'Wir ___ Orangensaft. (trinken)',
+      'trinken'
+    ],
+
+    [
+      'Ihr ___ Milch. (trinken)',
+      'trinkt'
+    ],
+
+    [
+      'Sie ___ Kaffee. (trinken, onlar)',
+      'trinken'
+    ],
+
+    [
+      '___ du gern Tee? (trinken)',
+      'Trinkst'
+    ],
+
+    [
+      'Was ___ Sie? (trinken)',
+      'trinken'
+    ]
+
+  ].forEach(
+    ([q,a]) =>
+      add(
+        q,
+        a,
+        'trinken çekimi'
+      )
+  );
+
+
+
+  // -------------------------------------------------------
+  // MÖCHTEN
+  // -------------------------------------------------------
+
+  [
+
+    [
+      'Ich ___ einen Kaffee. (möchten)',
+      'möchte'
+    ],
+
+    [
+      'Du ___ eine Pizza. (möchten)',
+      'möchtest'
+    ],
+
+    [
+      'Er ___ einen Tee. (möchten)',
+      'möchte'
+    ],
+
+    [
+      'Wir ___ zwei Brötchen. (möchten)',
+      'möchten'
+    ],
+
+    [
+      'Ihr ___ Wasser. (möchten)',
+      'möchtet'
+    ],
+
+    [
+      'Was ___ Sie trinken? (möchten)',
+      'möchten'
+    ],
+
+    [
+      '___ du einen Apfel? (möchten)',
+      'Möchtest'
+    ],
+
+    [
+      '___ ihr etwas essen? (möchten)',
+      'Möchtet'
+    ]
+
+  ].forEach(
+    ([q,a]) =>
+      add(
+        q,
+        a,
+        'möchten = kibarca istemek'
+      )
+  );
+
+
+
+  // -------------------------------------------------------
+  // RESTORAN FİİLLERİ
+  // -------------------------------------------------------
+
+  [
+
+    [
+      'Ich ___ einen Salat. (nehmen)',
+      'nehme'
+    ],
+
+    [
+      'Du ___ eine Suppe. (nehmen)',
+      'nimmst'
+    ],
+
+    [
+      'Was ___ Sie? (nehmen)',
+      'nehmen'
+    ],
+
+    [
+      'Die Suppe ___ gut. (schmecken)',
+      'schmeckt'
+    ],
+
+    [
+      'Der Kaffee ___ super. (schmecken)',
+      'schmeckt'
+    ],
+
+    [
+      'Die Äpfel ___ gut. (schmecken)',
+      'schmecken'
+    ],
+
+    [
+      'Wir ___ eine Pizza. (bestellen)',
+      'bestellen'
+    ],
+
+    [
+      'Ich möchte bitte ___. (zahlen)',
+      'zahlen'
+    ],
+
+    [
+      'Wir möchten die Rechnung ___. (bezahlen)',
+      'bezahlen'
+    ]
+
+  ].forEach(
+    ([q,a]) =>
+      add(
+        q,
+        a,
+        'restoran ve sipariş fiilleri'
+      )
+  );
+
+
+
+  // -------------------------------------------------------
+  // AKKUSATIV — MASKULIN
+  // -------------------------------------------------------
+
+  [
+
+    'Kaffee',
+    'Tee',
+    'Apfel',
+    'Salat',
+    'Orangensaft',
+    'Pfirsich'
+
+  ].forEach(
+    n => {
+
+      add(
+
+        `Ich möchte ___ ${n}. (ein)`,
+
+        'einen',
+
+        `der ${n} → einen ${n}`
+
+      );
+
+
+      add(
+
+        `Ich nehme ___ ${n}. (ein)`,
+
+        'einen',
+
+        'maskulin Akkusativ: ein → einen'
+
+      );
+
+    }
+  );
+
+
+
+  // -------------------------------------------------------
+  // AKKUSATIV — FEMININ
+  // -------------------------------------------------------
+
+  [
+
+    'Suppe',
+    'Pizza',
+    'Cola',
+    'Banane',
+    'Orange',
+    'Tomate'
+
+  ].forEach(
+    n => {
+
+      add(
+
+        `Ich möchte ___ ${n}. (eine)`,
+
+        'eine',
+
+        `die ${n} → eine ${n}`
+
+      );
+
+    }
+  );
+
+
+
+  // -------------------------------------------------------
+  // AKKUSATIV — NEUTRAL
+  // -------------------------------------------------------
+
+  [
+
+    'Wasser',
+    'Brötchen',
+    'Brot',
+    'Ei',
+    'Frühstück'
+
+  ].forEach(
+    n => {
+
+      add(
+
+        `Ich möchte ___ ${n}. (ein)`,
+
+        'ein',
+
+        `das ${n} → ein ${n}`
+
+      );
+
+    }
+  );
+
+
+
+  // -------------------------------------------------------
+  // KEIN / KEINEN / KEINE
+  // -------------------------------------------------------
+
+  [
+
+    'Kaffee',
+    'Tee',
+    'Alkohol',
+    'Saft'
+
+  ].forEach(
+    n => {
+
+      add(
+
+        `Ich trinke ___ ${n}. (kein)`,
+
+        'keinen',
+
+        'maskulin Akkusativ: kein → keinen'
+
+      );
+
+    }
+  );
+
+
+  [
+
+    'Fleisch',
+    'Brot',
+    'Wasser'
+
+  ].forEach(
+    n => {
+
+      add(
+
+        `Ich esse/trinke ___ ${n}. (kein)`,
+
+        'kein',
+
+        `das ${n} → kein ${n}`
+
+      );
+
+    }
+  );
+
+
+  [
+
+    'Pizza',
+    'Suppe',
+    'Cola',
+    'Milch'
+
+  ].forEach(
+    n => {
+
+      add(
+
+        `Ich möchte ___ ${n}. (kein)`,
+
+        'keine',
+
+        `die ${n} → keine ${n}`
+
+      );
+
+    }
+  );
+
+
+  add(
+    'Ich esse ___ Tomaten. (kein)',
+    'keine',
+    'çoğul → keine'
+  );
+
+
+  add(
+    'Die Suppe ist ___ heiß. (kein / nicht)',
+    'nicht',
+    'sıfat olumsuzlanır → nicht'
+  );
+
+
+  add(
+    'Der Kaffee ist ___ kalt. (kein / nicht)',
+    'nicht',
+    'sıfat → nicht'
+  );
+
+
+  add(
+    'Ich koche heute ___. (kein / nicht)',
+    'nicht',
+    'fiil/cümle olumsuzluğu → nicht'
+  );
+
+
+  add(
+    'Ich esse heute ___. (kein / nicht)',
+    'nicht',
+    'fiil/cümle olumsuzluğu → nicht'
+  );
+
+
+
+  // -------------------------------------------------------
+  // GERN / LIEBER
+  // -------------------------------------------------------
+
+  [
+
+    [
+      'Ich esse ___ Pizza. (severek)',
+      'gern'
+    ],
+
+    [
+      'Wir trinken ___ Kaffee. (severek)',
+      'gern'
+    ],
+
+    [
+      'Er isst ___ Fisch. (severek)',
+      'gern'
+    ],
+
+    [
+      'Ich esse gern Pizza, aber ich esse ___ Pasta. (tercihen)',
+      'lieber'
+    ],
+
+    [
+      'Sie trinkt gern Tee, aber sie trinkt ___ Kaffee. (daha çok tercih)',
+      'lieber'
+    ],
+
+    [
+      'Ich trinke ___ Cola. (sevmiyorum)',
+      'nicht gern'
+    ],
+
+    [
+      'Er isst ___ Spinat. (sevmiyor)',
+      'nicht gern'
+    ],
+
+    [
+      'Trinkst du ___ Kaffee? (severek)',
+      'gern'
+    ]
+
+  ].forEach(
+    ([q,a]) =>
+      add(
+        q,
+        a,
+        'gern = severek · lieber = tercih · nicht gern = sevmemek'
+      )
+  );
+
+
+
+  // -------------------------------------------------------
+  // TÜRKÇE → ALMANCA
+  // -------------------------------------------------------
+
+  [
+
+    [
+      'Bir kahve istiyorum.',
+      'Ich möchte einen Kaffee.',
+      'möchte + Akkusativ'
+    ],
+
+    [
+      'Bir çorba alayım.',
+      'Ich nehme eine Suppe.',
+      'nehmen + Akkusativ'
+    ],
+
+    [
+      'Pizza yemeyi severim.',
+      'Ich esse gern Pizza.',
+      'fiil + gern'
+    ],
+
+    [
+      'Çayı tercih ederim.',
+      'Ich trinke lieber Tee.',
+      'lieber = tercihen'
+    ],
+
+    [
+      'Et yemiyorum.',
+      'Ich esse kein Fleisch.',
+      'kein + das Fleisch'
+    ],
+
+    [
+      'Kahve içmiyorum.',
+      'Ich trinke keinen Kaffee.',
+      'keinen + maskulin Akkusativ'
+    ],
+
+    [
+      'Çorba sıcak değil.',
+      'Die Suppe ist nicht heiß.',
+      'sıfat + nicht'
+    ],
+
+    [
+      'Bu lezzetli.',
+      'Das schmeckt gut.',
+      'schmecken'
+    ],
+
+    [
+      'Ne arzu edersiniz?',
+      'Was möchten Sie?',
+      'restoran kalıbı'
+    ],
+
+    [
+      'Başka bir şey var mıydı?',
+      'Sonst noch etwas?',
+      'restoran kalıbı'
+    ],
+
+    [
+      'Hayır teşekkürler, hepsi bu.',
+      'Nein danke, das ist alles.',
+      'restoran kalıbı'
+    ],
+
+    [
+      'Birlikte mi ayrı ayrı mı?',
+      'Zusammen oder getrennt?',
+      'hesap ödeme kalıbı'
+    ],
+
+    [
+      'Hesabı ödemek istiyoruz.',
+      'Wir möchten zahlen.',
+      'zahlen'
+    ],
+
+    [
+      'Menüyü alabilir miyim?',
+      'Kann ich die Speisekarte haben?',
+      'Speisekarte'
+    ],
+
+    [
+      'Hesap lütfen.',
+      'Die Rechnung, bitte.',
+      'Rechnung'
+    ]
+
+  ].forEach(
+    ([q,a,n]) =>
+      add(
+        q,
+        a,
+        n
+      )
+  );
+
+
+
+  // -------------------------------------------------------
+  // ARTİKEL TEKRARI
+  // -------------------------------------------------------
+
+  [
+
+    ['___ Apfel','der'],
+
+    ['___ Kaffee','der'],
+
+    ['___ Tee','der'],
+
+    ['___ Salat','der'],
+
+    ['___ Pfirsich','der'],
+
+
+    ['___ Banane','die'],
+
+    ['___ Suppe','die'],
+
+    ['___ Pizza','die'],
+
+    ['___ Tomate','die'],
+
+    ['___ Gurke','die'],
+
+    ['___ Cola','die'],
+
+
+    ['___ Wasser','das'],
+
+    ['___ Brot','das'],
+
+    ['___ Brötchen','das'],
+
+    ['___ Ei','das'],
+
+    ['___ Frühstück','das'],
+
+    ['___ Mittagessen','das'],
+
+    ['___ Abendessen','das']
+
+  ].forEach(
+    ([q,a]) =>
+      add(
+        q,
+        a,
+        'Yiyecek kelimelerini artikeliyle öğren.'
+      )
+  );
+
+
+  return
+    dedupeGrammarQuestions(out);
+
+}
+
+
+
+// =========================================================
+// 6. FOOD GRAMER HAVUZUNU SİSTEME BAĞLA
+// =========================================================
+
+const _grammarTopicVariantsFoodBase =
+  grammarTopicVariants;
+
+
+grammarTopicVariants =
+  function(id){
+
+
+    if(
+      id === 'food'
+    ){
+
+      return
+        grammarFoodVariants();
+
+    }
+
+
+    return
+      _grammarTopicVariantsFoodBase(id);
+
+  };
+
+
+
+// =========================================================
+// 7. CACHE TEMİZLE
+// =========================================================
+
+_a1AllWordsCache = null;
+
+_a1LessonWordsCache.clear();
+
+_a1WordNormCache.clear();
+
+_a1LessonKeyCache.clear();
 ensureA1Profile();updateA1HomeProgress();
 
 renderHome();
