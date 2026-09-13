@@ -1,3 +1,26 @@
+Yapıştırılan metin(20260913-124857).txt
+Belge
+bu kısıma a1 kelimelerini eklemek istiyorum. ama şöyle alt kategoriler yapmak istiyorum yemek, kıyafet, günler aylar mevsimler ve hepsini artikelli koyalım diyorum. sadece bu kelime çalışması kısmına koyalım.
+
+Bu sohbet artık Çalışma'yı kullanıyor.Geri al
+
+Yapıştırılan markdown(20260913-125302).md
+Dosya
+bunları da ekleyelim kategoi olarak
+
+Ekledim. Artık Kelime Çalışması bölümünde:
+
+Toplam 16 tematik kategori
+538 çalışma kelimesi
+Bütün isimlerde der / die / das
+Fiil, sıfat, renk, sayı ve yönlerde doğal artikelsiz kullanım
+Kategori seçildiğinde otomatik A1 filtresi
+Yazmalı ve şıklı çalışma modları
+
+bulunuyor. Diğer bölümlere dokunmadım.
+
+Güncellenmiş Deutsch 3000 HTML dosyası
+
 <!doctype html>
 <html lang="tr">
 <head>
@@ -246,6 +269,25 @@ A1–B1 kelime havuzları yüklü · A1 tanışma bölümüne ülke, dil ve gün
         <div class="card quiz-card">
           <div class="controls">
             <select id="levelFilter"><option value="ALL">Tüm seviyeler</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option></select>
+            <select id="categoryFilter" aria-label="A1 kelime konusu">
+              <option value="ALL">Tüm konular</option>
+              <option value="food">🍎 Yiyecek ve içecekler</option>
+              <option value="clothing">👕 Kıyafet ve aksesuarlar</option>
+              <option value="calendar">📅 Günler, aylar ve mevsimler</option>
+              <option value="home_rooms">🏠 Evin bölümleri ve odalar</option>
+              <option value="home_items">🛋️ Ev eşyaları ve mobilyalar</option>
+              <option value="family">👨‍👩‍👧 Aile ve akrabalar</option>
+              <option value="body_health">🩺 Vücut ve sağlık</option>
+              <option value="city_transport">🚌 Şehir, ulaşım ve yol tarifi</option>
+              <option value="jobs">💼 Meslekler ve iş hayatı</option>
+              <option value="school_office">✏️ Okul, büro ve kırtasiye</option>
+              <option value="nature_weather">🌦️ Doğa, hava ve coğrafya</option>
+              <option value="animals">🐾 Hayvanlar</option>
+              <option value="colors">🎨 Renkler</option>
+              <option value="numbers_quantities">🔢 Sayılar ve miktarlar</option>
+              <option value="adjectives">↔️ Sıfatlar ve zıt anlamlılar</option>
+              <option value="verbs">⚡ Temel fiiller</option>
+            </select>
             <select id="typeFilter"><option value="ALL">Tüm türler</option><option value="noun">İsim</option><option value="verb">Fiil</option><option value="adjective">Sıfat</option><option value="adverb">Zarf</option><option value="preposition">Edat</option><option value="other">Diğer</option></select>
             <select id="modeFilter"><option value="de-tr-write">DE → TR / Yazarak</option><option value="tr-de-write">TR → DE / Yazarak</option><option value="de-tr-choice">DE → TR / Şıklı</option><option value="tr-de-choice">TR → DE / Şıklı</option></select>
             <select id="countFilter"><option>10</option><option>20</option><option>50</option><option>100</option><option value="ALL">Tümü</option></select>
@@ -345,7 +387,7 @@ WORDS.push(...[{"id":"a1_intro_001","level":"A1","type":"other","word":"Guten Mo
 const SENTENCES = [{"level":"A1","tr":"Ben Almanca öğreniyorum.","de":"Ich lerne Deutsch."},{"level":"A1","tr":"Bugün evdeyim.","de":"Ich bin heute zu Hause."},{"level":"A1","tr":"Bir bardak su istiyorum.","de":"Ich möchte ein Glas Wasser."},{"level":"A1","tr":"O Berlin'de yaşıyor.","de":"Er wohnt in Berlin."},{"level":"A1","tr":"Saat sekizde işe gidiyorum.","de":"Ich gehe um acht Uhr zur Arbeit."},{"level":"A2","tr":"Dün arkadaşımı ziyaret ettim.","de":"Ich habe gestern meinen Freund besucht."},{"level":"A2","tr":"Tren zamanında geldi.","de":"Der Zug ist pünktlich angekommen."},{"level":"A2","tr":"Bu soruyu anlamıyorum.","de":"Ich verstehe diese Frage nicht."},{"level":"A2","tr":"Hafta sonu alışveriş yaptık.","de":"Am Wochenende haben wir eingekauft."},{"level":"B1","tr":"Bu karar benim için çok önemli.","de":"Diese Entscheidung ist für mich sehr wichtig."},{"level":"B1","tr":"Sorunu birlikte çözebiliriz.","de":"Wir können das Problem gemeinsam lösen."},{"level":"B1","tr":"Toplu taşıma kullanmanın birçok avantajı vardır.","de":"Die Nutzung öffentlicher Verkehrsmittel hat viele Vorteile."},{"level":"B1","tr":"Fikrimi açıkça ifade etmek istiyorum.","de":"Ich möchte meine Meinung klar ausdrücken."},{"level":"B2","tr":"Bu gelişme toplum üzerinde önemli bir etkiye sahip olabilir.","de":"Diese Entwicklung kann einen erheblichen Einfluss auf die Gesellschaft haben."},{"level":"B2","tr":"Karar verirken farklı bakış açılarını dikkate almalıyız.","de":"Bei der Entscheidung sollten wir verschiedene Perspektiven berücksichtigen."},{"level":"B2","tr":"Sonuçlar dikkatli bir şekilde analiz edilmelidir.","de":"Die Ergebnisse sollten sorgfältig analysiert werden."}];
 const KEY='deutsch3000_v1';
 let db = JSON.parse(localStorage.getItem(KEY)||'null') || {current:'Misafir',profiles:{Misafir:{xp:0,progress:{},article:{der:[0,0],die:[0,0],das:[0,0]},sentenceWrong:[]}}};
-let session=[], qi=0, locked=false;
+let session=[], qi=0, locked=false, activeStudyCategory='ALL';
 let studyRetryMarks={},studyRetryCounts={};
 
 function save(){localStorage.setItem(KEY,JSON.stringify(db));renderHome()}
@@ -522,8 +564,10 @@ function answerTarget(w,mode){let de=w.display||w.word; if(w.type==='noun'&&w.ar
 function promptText(w,mode){return mode.startsWith('de-tr')?(w.display||w.word):w.tr}
 
 function startStudy(custom){
- let level=document.getElementById('levelFilter').value,type=document.getElementById('typeFilter').value,count=document.getElementById('countFilter').value;
- let pool=custom||WORDS.filter(w=>(level==='ALL'||w.level===level)&&(type==='ALL'||w.type===type));
+ let level=document.getElementById('levelFilter').value,type=document.getElementById('typeFilter').value,count=document.getElementById('countFilter').value,category=document.getElementById('categoryFilter')?.value||'ALL';
+ activeStudyCategory=custom?'ALL':category;
+ let source=category==='ALL'?WORDS:(A1_CATEGORY_WORDS[category]||[]);
+ let pool=custom||source.filter(w=>(level==='ALL'||w.level===level)&&(type==='ALL'||w.type===type));
  session=shuffle(pool); if(count!=='ALL')session=session.slice(0,+count); qi=0;studyRetryMarks={};studyRetryCounts={};showStudy()
 }
 function queueStudyRetry(w){
@@ -538,9 +582,10 @@ function queueStudyRetry(w){
 function showStudy(){
  let box=document.getElementById('studyBox'); if(!session.length){box.innerHTML='<p>Bu filtrede kelime bulunamadı.</p>';return} if(qi>=session.length){box.innerHTML='<h3>Oturum tamamlandı 🎉</h3>';return}
  locked=false;let w=session[qi],mode=document.getElementById('modeFilter').value,target=answerTarget(w,mode);
- let html=`<div class="sub">${qi+1} / ${session.length} · ${w.level} · ${w.type}</div><div class="prompt">${esc(promptText(w,mode))} <button class="btn" onclick="speak('${jsq(w.display||w.word)}')">🔊</button></div><div class="feedback" id="feedback"></div>`;
+ let category=activeStudyCategory,categoryLabel=A1_CATEGORY_LABELS[category]||'';
+ let html=`<div class="sub">${qi+1} / ${session.length} · ${w.level} · ${w.type}${categoryLabel?' · '+categoryLabel:''}</div><div class="prompt">${esc(promptText(w,mode))} <button class="btn" onclick="speak('${jsq(w.display||w.word)}')">🔊</button></div><div class="feedback" id="feedback"></div>`;
  if(mode.endsWith('choice')){
-   let same=WORDS.filter(x=>x.id!==w.id&&x.type===w.type);let opts=shuffle([target,...shuffle(same).slice(0,3).map(x=>answerTarget(x,mode))]);
+   let choiceSource=category==='ALL'?WORDS:(A1_CATEGORY_WORDS[category]||[]),same=choiceSource.filter(x=>x.id!==w.id&&x.type===w.type);let opts=shuffle([target,...shuffle(same).slice(0,3).map(x=>answerTarget(x,mode))]);
    html+=`<div class="choices">${opts.map(o=>`<button class="choice" onclick="checkChoice('${jsq(o)}','${jsq(target)}')">${esc(o)}</button>`).join('')}</div>`;
  }else{
    html+=`<input class="answer" id="ans" autocomplete="off" placeholder="Cevabın"><div class="controls"><button class="btn primary" onclick="checkWrite()">Kontrol</button><button class="btn" onclick="dontKnow()">Bilmiyorum</button><button class="btn" id="nextBtn" disabled onclick="nextStudy()">Sonraki →</button></div>`;
@@ -559,8 +604,8 @@ function checkChoice(v,target){
 }
 function dontKnow(){if(locked)return;let w=session[qi],mode=document.getElementById('modeFilter').value,target=answerTarget(w,mode);queueStudyRetry(w);document.getElementById('feedback').innerHTML=`<span class="warn">Doğru cevap${acceptedAnswers(target).length>1?'lardan biri':''}: ${esc(target)}<br>🔁 Bu kelime tur içinde tekrar gelecek.</span>`;updateWord(w,'unknown');locked=true;document.getElementById('nextBtn').disabled=false}
 function nextStudy(){if(!locked)return;qi++;showStudy()}
-function quickStart(){openPage('study');let p=WORDS.filter(w=>{let s=status(w.id);return !s.mastered&&(s.wrong||s.unknown||s.correct<3)});session=shuffle(p).slice(0,20);qi=0;showStudy()}
-function openMistakes(){openPage('study');let p=WORDS.filter(w=>status(w.id).wrong>0&&!status(w.id).mastered);session=shuffle(p).slice(0,50);qi=0;showStudy()}
+function quickStart(){openPage('study');activeStudyCategory='ALL';if(document.getElementById('categoryFilter'))document.getElementById('categoryFilter').value='ALL';let p=WORDS.filter(w=>{let s=status(w.id);return !s.mastered&&(s.wrong||s.unknown||s.correct<3)});session=shuffle(p).slice(0,20);qi=0;showStudy()}
+function openMistakes(){openPage('study');activeStudyCategory='ALL';if(document.getElementById('categoryFilter'))document.getElementById('categoryFilter').value='ALL';let p=WORDS.filter(w=>status(w.id).wrong>0&&!status(w.id).mastered);session=shuffle(p).slice(0,50);qi=0;showStudy()}
 
 let articlePool=[], ai=0;
 function startArticle(){let lv=document.getElementById('articleLevel').value;articlePool=shuffle(WORDS.filter(w=>w.type==='noun'&&w.article&&(lv==='ALL'||w.level===lv))).slice(0,50);ai=0;showArticle()}
@@ -613,8 +658,8 @@ function jsq(s){return String(s??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").r
 <script>
 // Görsel düzen için ek yardımcılar
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
-function openLevel(level){openPage('study');document.getElementById('levelFilter').value=level;startStudy()}
-function openUnknowns(){openPage('study');let p=WORDS.filter(w=>status(w.id).unknown>0&&!status(w.id).mastered);session=shuffle(p).slice(0,50);qi=0;showStudy()}
+function openLevel(level){openPage('study');document.getElementById('levelFilter').value=level;if(document.getElementById('categoryFilter'))document.getElementById('categoryFilter').value='ALL';startStudy()}
+function openUnknowns(){openPage('study');activeStudyCategory='ALL';if(document.getElementById('categoryFilter'))document.getElementById('categoryFilter').value='ALL';let p=WORDS.filter(w=>status(w.id).unknown>0&&!status(w.id).mastered);session=shuffle(p).slice(0,50);qi=0;showStudy()}
 
 const oldRenderHome = renderHome;
 renderHome = function(){
@@ -1515,7 +1560,7 @@ function finishA1LessonCheck(){
  renderA1LessonDetail();
 }
 function toggleA1Done(){let lp=lessonProgress(currentA1Lesson.id);lp.done=!lp.done;save();renderA1LessonDetail()}
-function startA1Review(){openPage('study');document.getElementById('levelFilter').value='A1';document.getElementById('typeFilter').value='ALL';document.getElementById('modeFilter').value=Math.random()>.5?'de-tr-write':'tr-de-write';document.getElementById('countFilter').value='50';startStudy()}
+function startA1Review(){openPage('study');document.getElementById('levelFilter').value='A1';document.getElementById('typeFilter').value='ALL';if(document.getElementById('categoryFilter'))document.getElementById('categoryFilter').value='ALL';document.getElementById('modeFilter').value=Math.random()>.5?'de-tr-write':'tr-de-write';document.getElementById('countFilter').value='50';startStudy()}
 function updateA1HomeProgress(){
  if(!document.getElementById('a1HomeBar'))return;ensureA1Profile();syncAllA1Lessons();let done=A1_LESSONS.filter(l=>isA1LessonDone(l.id)).length,pct=a1OverallProgressPct();document.getElementById('a1HomeBar').style.width=pct+'%';document.getElementById('a1HomeText').textContent=`${done}/${A1_LESSONS.length} ders tamamlandı · genel ilerleme %${pct}`;
 }
@@ -4217,32 +4262,32 @@ oturmuyor.)</em></li>
 <tbody>
 <tr class="odd">
 <td><strong>İsim (ein)</strong></td>
-<td>Ich habe <em>ein</em> Problem.</td>
-<td>Ich habe <strong>kein</strong> Problem.</td>
-<td><em>ein</em> → <em>kein</em></td>
+<td>Ich habe <em>ein</em> Problem.</td>
+<td>Ich habe <strong>kein</strong> Problem.</td>
+<td><em>ein</em> → <em>kein</em></td>
 </tr>
 <tr class="even">
 <td><strong>İsim (artikelsiz)</strong></td>
-<td>Ich trinke <em>Kaffee</em>.</td>
-<td>Ich trinke <strong>keinen</strong> Kaffee.</td>
+<td>Ich trinke <em>Kaffee</em>.</td>
+<td>Ich trinke <strong>keinen</strong> Kaffee.</td>
 <td>Artikelsiz isim</td>
 </tr>
 <tr class="odd">
 <td><strong>Sıfat</strong></td>
-<td>Das ist <em>gut</em>.</td>
-<td>Das ist <strong>nicht</strong> gut.</td>
+<td>Das ist <em>gut</em>.</td>
+<td>Das ist <strong>nicht</strong> gut.</td>
 <td>Sıfat olumsuzlanır</td>
 </tr>
 <tr class="even">
 <td><strong>Fiil</strong></td>
-<td>Er <em>kommt</em>.</td>
-<td>Er kommt <strong>nicht</strong>.</td>
+<td>Er <em>kommt</em>.</td>
+<td>Er kommt <strong>nicht</strong>.</td>
 <td>Fiil olumsuzlanır</td>
 </tr>
 <tr class="odd">
 <td><strong>İyelik Zamiri</strong></td>
-<td>Das ist <em>meine</em> Tasche.</td>
-<td>Das ist <strong>nicht</strong> meine Tasche.</td>
+<td>Das ist <em>meine</em> Tasche.</td>
+<td>Das ist <strong>nicht</strong> meine Tasche.</td>
 <td>İyelik zamiri (<em>mein/dein</em>)</td>
 </tr>
 </tbody>
@@ -4278,24 +4323,24 @@ kuralına göre değişir.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>der</strong> (eril)</td>
+<td><strong>der</strong> (eril)</td>
 <td><strong>dem</strong></td>
-<td>der → de<strong>m</strong></td>
+<td>der → de<strong>m</strong></td>
 </tr>
 <tr class="even">
-<td><strong>das</strong> (nötr)</td>
+<td><strong>das</strong> (nötr)</td>
 <td><strong>dem</strong></td>
-<td>das → de<strong>m</strong></td>
+<td>das → de<strong>m</strong></td>
 </tr>
 <tr class="odd">
-<td><strong>die</strong> (dişil)</td>
+<td><strong>die</strong> (dişil)</td>
 <td><strong>der</strong></td>
-<td>die → de<strong>r</strong></td>
+<td>die → de<strong>r</strong></td>
 </tr>
 <tr class="even">
-<td><strong>die</strong> (çoğul)</td>
-<td><strong>den</strong> (+ isme <strong>-n</strong>)</td>
-<td>die → de<strong>n</strong> (+n)</td>
+<td><strong>die</strong> (çoğul)</td>
+<td><strong>den</strong> (+ isme <strong>-n</strong>)</td>
+<td>die → de<strong>n</strong> (+n)</td>
 </tr>
 </tbody>
 </table>
@@ -4594,38 +4639,38 @@ gramer dizilişidir:</p>
 <td><strong>und</strong></td>
 <td>ve</td>
 <td>2. Pozisyonda kalır</td>
-<td>Er kocht <strong>und</strong> sie liest.</td>
+<td>Er kocht <strong>und</strong> sie liest.</td>
 </tr>
 <tr class="even">
 <td><strong>aber</strong></td>
 <td>ama</td>
 <td>2. Pozisyonda kalır</td>
-<td>Das Auto ist alt, <strong>aber</strong> es fährt gut.</td>
+<td>Das Auto ist alt, <strong>aber</strong> es fährt gut.</td>
 </tr>
 <tr class="odd">
 <td><strong>oder</strong></td>
 <td>veya</td>
 <td>2. Pozisyonda kalır</td>
-<td>Kommst du mit <strong>oder</strong> bleibst du hier?</td>
+<td>Kommst du mit <strong>oder</strong> bleibst du hier?</td>
 </tr>
 <tr class="even">
 <td><strong>denn</strong></td>
 <td>çünkü</td>
 <td>2. Pozisyonda kalır</td>
-<td>Ich schlafe, <strong>denn</strong> ich bin müde.</td>
+<td>Ich schlafe, <strong>denn</strong> ich bin müde.</td>
 </tr>
 <tr class="odd">
 <td><strong>sondern</strong></td>
 <td>aksine</td>
 <td>2. Pozisyonda kalır</td>
-<td>Das ist kein Tee, <strong>sondern</strong> das ist Kaffee.</td>
+<td>Das ist kein Tee, <strong>sondern</strong> das ist Kaffee.</td>
 </tr>
 <tr class="even">
 <td><strong>weil</strong></td>
 <td>çünkü / için</td>
 <td><strong>En sona gider</strong></td>
-<td>Ich schlafe, <strong>weil</strong> ich
-müde <strong>bin</strong>.</td>
+<td>Ich schlafe, <strong>weil</strong> ich
+müde <strong>bin</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -4852,18 +4897,18 @@ uyurum.)</em></li>
 <tr class="odd">
 <td><strong>es gibt</strong></td>
 <td>Var</td>
-<td>Sonrasındaki isim <strong>Akkusativ</strong> olur (<em>einen
+<td>Sonrasındaki isim <strong>Akkusativ</strong> olur (<em>einen
 Tisch</em>).</td>
 </tr>
 <tr class="even">
 <td><strong>man</strong></td>
 <td>İnsanlar / -ılır, -ilir</td>
-<td>Fiil <strong>er/sie/es</strong> gibi tekil çekimlenir.</td>
+<td>Fiil <strong>er/sie/es</strong> gibi tekil çekimlenir.</td>
 </tr>
 <tr class="odd">
 <td><strong>doch</strong></td>
 <td>Bilakis, aksine (evet)</td>
-<td>Sadece <strong>olumsuz soruya</strong> karşı çıkarken
+<td>Sadece <strong>olumsuz soruya</strong> karşı çıkarken
 kullanılır.</td>
 </tr>
 <tr class="even">
@@ -5004,7 +5049,7 @@ ekstra bir “s” daha eklenmez, sadece <strong>-t</strong> gelir
 </colgroup>
 <thead>
 <tr class="header">
-<th>Zamirmachen (Düzenli)fahren (a → ä)sprechen (e → i)seinhaben</th>
+<th>Zamirmachen (Düzenli)fahren (a → ä)sprechen (e → i)seinhaben</th>
 <th></th>
 <th></th>
 <th></th>
@@ -5107,7 +5152,7 @@ sorar)</em></p>
 <li><h3>W-Fragen (Soru Kelimeli):</h3>
 <p>Soru kelimesi 1. sıradadır, çekimli fiil <strong>her zaman 2.
 sıraya</strong> gelir:</p>
-<p>Soru Kelimesi+<strong>Fiil</strong>+O¨zne+…?</p>
+<p>Soru Kelimesi+<strong>Fiil</strong>+O¨zne+…?</p>
 <ul>
 <li><em>Woher</em> + <strong>kommst</strong> + <em>du</em>?</li>
 <li><em>Was</em> + <strong>trinken</strong> + <em>wir</em>?</li>
@@ -5144,27 +5189,27 @@ musunuz?)</em></li>
 <tbody>
 <tr class="odd">
 <td><strong>W-Frage</strong></td>
-<td><strong>W-Kelimesi</strong> <em>(Wo)</em></td>
-<td><strong>Fiil</strong> <em>(wohnst)</em></td>
-<td><strong>Wo wohnst</strong> du?</td>
+<td><strong>W-Kelimesi</strong> <em>(Wo)</em></td>
+<td><strong>Fiil</strong> <em>(wohnst)</em></td>
+<td><strong>Wo wohnst</strong> du?</td>
 </tr>
 <tr class="even">
 <td><strong>W-Frage</strong></td>
-<td><strong>W-Kelimesi</strong> <em>(Wann)</em></td>
-<td><strong>Fiil</strong> <em>(kommt)</em></td>
-<td><strong>Wann kommt</strong> der Bus?</td>
+<td><strong>W-Kelimesi</strong> <em>(Wann)</em></td>
+<td><strong>Fiil</strong> <em>(kommt)</em></td>
+<td><strong>Wann kommt</strong> der Bus?</td>
 </tr>
 <tr class="odd">
 <td><strong>Ja/Nein</strong></td>
-<td><strong>Fiil</strong> <em>(Wohnst)</em></td>
-<td><strong>Özne</strong> <em>(du)</em></td>
-<td><strong>Wohnst du</strong> in Jena?</td>
+<td><strong>Fiil</strong> <em>(Wohnst)</em></td>
+<td><strong>Özne</strong> <em>(du)</em></td>
+<td><strong>Wohnst du</strong> in Jena?</td>
 </tr>
 <tr class="even">
 <td><strong>Ja/Nein</strong></td>
-<td><strong>Fiil</strong> <em>(Ist)</em></td>
-<td><strong>Özne</strong> <em>(das)</em></td>
-<td><strong>Ist das</strong> teuer?</td>
+<td><strong>Fiil</strong> <em>(Ist)</em></td>
+<td><strong>Özne</strong> <em>(das)</em></td>
+<td><strong>Ist das</strong> teuer?</td>
 </tr>
 </tbody>
 </table>
@@ -5333,37 +5378,37 @@ Mayıs’ta - sonuna</em> <strong><em>-n</em></strong>
 <tr class="odd">
 <td><strong>Saat</strong></td>
 <td><strong>um</strong></td>
-<td><strong>um</strong> 9:00 Uhr</td>
+<td><strong>um</strong> 9:00 Uhr</td>
 <td>saat 9’da</td>
 </tr>
 <tr class="even">
 <td><strong>Gün</strong></td>
 <td><strong>am</strong></td>
-<td><strong>am</strong> Freitag</td>
+<td><strong>am</strong> Freitag</td>
 <td>Cuma günü</td>
 </tr>
 <tr class="odd">
 <td><strong>Günün Vakti</strong></td>
 <td><strong>am</strong></td>
-<td><strong>am</strong> Nachmittag</td>
+<td><strong>am</strong> Nachmittag</td>
 <td>öğleden sonra</td>
 </tr>
 <tr class="even">
 <td><strong>Ay</strong></td>
 <td><strong>im</strong></td>
-<td><strong>im</strong> August</td>
+<td><strong>im</strong> August</td>
 <td>Ağustos’ta</td>
 </tr>
 <tr class="odd">
 <td><strong>Mevsim</strong></td>
 <td><strong>im</strong></td>
-<td><strong>im</strong> Winter</td>
+<td><strong>im</strong> Winter</td>
 <td>kışın</td>
 </tr>
 <tr class="even">
 <td><strong>Aralık</strong></td>
 <td><strong>von … bis</strong></td>
-<td><strong>von</strong> 9 <strong>bis</strong> 17 Uhr</td>
+<td><strong>von</strong> 9 <strong>bis</strong> 17 Uhr</td>
 <td>9’dan 17’ye kadar</td>
 </tr>
 </tbody>
@@ -5475,50 +5520,50 @@ harfi telaffuz kolaylığı için düşer:</em></p>
 <td><strong>ich (ben)</strong></td>
 <td>mein Bruder</td>
 <td>mein Kind</td>
-<td>mein<strong>e</strong> Schwester</td>
-<td>mein<strong>e</strong> Eltern</td>
+<td>mein<strong>e</strong> Schwester</td>
+<td>mein<strong>e</strong> Eltern</td>
 </tr>
 <tr class="even">
 <td><strong>du (sen)</strong></td>
 <td>dein Bruder</td>
 <td>dein Kind</td>
-<td>dein<strong>e</strong> Schwester</td>
-<td>dein<strong>e</strong> Eltern</td>
+<td>dein<strong>e</strong> Schwester</td>
+<td>dein<strong>e</strong> Eltern</td>
 </tr>
 <tr class="odd">
 <td><strong>er (o - erkek)</strong></td>
 <td>sein Bruder</td>
 <td>sein Kind</td>
-<td>sein<strong>e</strong> Schwester</td>
-<td>sein<strong>e</strong> Eltern</td>
+<td>sein<strong>e</strong> Schwester</td>
+<td>sein<strong>e</strong> Eltern</td>
 </tr>
 <tr class="even">
 <td><strong>sie (o - kadın)</strong></td>
 <td>ihr Bruder</td>
 <td>ihr Kind</td>
-<td>ihr<strong>e</strong> Schwester</td>
-<td>ihr<strong>e</strong> Eltern</td>
+<td>ihr<strong>e</strong> Schwester</td>
+<td>ihr<strong>e</strong> Eltern</td>
 </tr>
 <tr class="odd">
 <td><strong>wir (biz)</strong></td>
 <td>unser Bruder</td>
 <td>unser Kind</td>
-<td>unser<strong>e</strong> Schwester</td>
-<td>unser<strong>e</strong> Eltern</td>
+<td>unser<strong>e</strong> Schwester</td>
+<td>unser<strong>e</strong> Eltern</td>
 </tr>
 <tr class="even">
 <td><strong>ihr (siz)</strong></td>
 <td>euer Bruder</td>
 <td>euer Kind</td>
-<td>eur<strong>e</strong> Schwester</td>
-<td>eur<strong>e</strong> Eltern</td>
+<td>eur<strong>e</strong> Schwester</td>
+<td>eur<strong>e</strong> Eltern</td>
 </tr>
 <tr class="odd">
 <td><strong>Sie (resmi)</strong></td>
 <td>Ihr Bruder</td>
 <td>Ihr Kind</td>
-<td>Ihr<strong>e</strong> Schwester</td>
-<td>Ihr<strong>e</strong> Eltern</td>
+<td>Ihr<strong>e</strong> Schwester</td>
+<td>Ihr<strong>e</strong> Eltern</td>
 </tr>
 </tbody>
 </table>
@@ -5662,27 +5707,27 @@ Decke.)</em></li>
 <tr class="odd">
 <td><strong>Oda sayısı</strong></td>
 <td>haben + sayı</td>
-<td>Die Wohnung <strong>hat</strong> vier Zimmer.</td>
+<td>Die Wohnung <strong>hat</strong> vier Zimmer.</td>
 </tr>
 <tr class="even">
 <td><strong>Varlık bildirme</strong></td>
 <td>es gibt + Akkusativ</td>
-<td>Im Flur gibt es <strong>einen</strong> Schrank.</td>
+<td>Im Flur gibt es <strong>einen</strong> Schrank.</td>
 </tr>
 <tr class="odd">
 <td><strong>Yatay duruş</strong></td>
 <td>liegen + Dativ</td>
-<td>Der Stift liegt <strong>auf dem</strong> Tisch.</td>
+<td>Der Stift liegt <strong>auf dem</strong> Tisch.</td>
 </tr>
 <tr class="even">
 <td><strong>Dikey duruş</strong></td>
 <td>stehen + Dativ</td>
-<td>Die Lampe steht <strong>neben dem</strong> Bett.</td>
+<td>Die Lampe steht <strong>neben dem</strong> Bett.</td>
 </tr>
 <tr class="odd">
 <td><strong>Asılı duruş</strong></td>
 <td>hängen + Dativ</td>
-<td>Das Foto hängt <strong>an der</strong> Wand.</td>
+<td>Das Foto hängt <strong>an der</strong> Wand.</td>
 </tr>
 </tbody>
 </table>
@@ -5730,35 +5775,35 @@ maskulin (der) kelimeler değişir.</strong> Nötr (das), dişil (die) ve
 <tbody>
 <tr class="odd">
 <td><strong>Maskulin</strong></td>
-<td><strong>der</strong> Pullover</td>
-<td><strong>den</strong> Pullover</td>
-<td><strong>einen</strong> Pullover</td>
-<td><strong>keinen</strong> Pullover</td>
-<td><strong>meinen</strong> Pullover</td>
+<td><strong>der</strong> Pullover</td>
+<td><strong>den</strong> Pullover</td>
+<td><strong>einen</strong> Pullover</td>
+<td><strong>keinen</strong> Pullover</td>
+<td><strong>meinen</strong> Pullover</td>
 </tr>
 <tr class="even">
 <td><strong>Neutral</strong></td>
-<td><strong>das</strong> T-Shirt</td>
-<td><strong>das</strong> T-Shirt</td>
-<td><strong>ein</strong> T-Shirt</td>
-<td><strong>kein</strong> T-Shirt</td>
-<td><strong>mein</strong> T-Shirt</td>
+<td><strong>das</strong> T-Shirt</td>
+<td><strong>das</strong> T-Shirt</td>
+<td><strong>ein</strong> T-Shirt</td>
+<td><strong>kein</strong> T-Shirt</td>
+<td><strong>mein</strong> T-Shirt</td>
 </tr>
 <tr class="odd">
 <td><strong>Feminin</strong></td>
-<td><strong>die</strong> Hose</td>
-<td><strong>die</strong> Hose</td>
-<td><strong>eine</strong> Hose</td>
-<td><strong>keine</strong> Hose</td>
-<td><strong>meine</strong> Hose</td>
+<td><strong>die</strong> Hose</td>
+<td><strong>die</strong> Hose</td>
+<td><strong>eine</strong> Hose</td>
+<td><strong>keine</strong> Hose</td>
+<td><strong>meine</strong> Hose</td>
 </tr>
 <tr class="even">
 <td><strong>Plural</strong></td>
-<td><strong>die</strong> Schuhe</td>
-<td><strong>die</strong> Schuhe</td>
-<td>— <em>(artikelsiz)</em></td>
-<td><strong>keine</strong> Schuhe</td>
-<td><strong>meine</strong> Schuhe</td>
+<td><strong>die</strong> Schuhe</td>
+<td><strong>die</strong> Schuhe</td>
+<td>— <em>(artikelsiz)</em></td>
+<td><strong>keine</strong> Schuhe</td>
+<td><strong>meine</strong> Schuhe</td>
 </tr>
 </tbody>
 </table>
@@ -5839,28 +5884,28 @@ Hose ist zu eng. - Pantolon çok dar.)</em></li>
 <tbody>
 <tr class="odd">
 <td><strong>der kelimesini almak</strong></td>
-<td>kaufen + <strong>einen / den</strong></td>
-<td>Ich kaufe <strong>einen</strong> Schal.</td>
+<td>kaufen + <strong>einen / den</strong></td>
+<td>Ich kaufe <strong>einen</strong> Schal.</td>
 </tr>
 <tr class="even">
 <td><strong>das kelimesini aramak</strong></td>
-<td>suchen + <strong>ein / das</strong></td>
-<td>Ich suche <strong>ein</strong> Hemd.</td>
+<td>suchen + <strong>ein / das</strong></td>
+<td>Ich suche <strong>ein</strong> Hemd.</td>
 </tr>
 <tr class="odd">
 <td><strong>die kelimesini bulmak</strong></td>
-<td>finden + <strong>eine / die</strong></td>
-<td>Ich finde <strong>die</strong> Hose teuer.</td>
+<td>finden + <strong>eine / die</strong></td>
+<td>Ich finde <strong>die</strong> Hose teuer.</td>
 </tr>
 <tr class="even">
 <td><strong>Fiyat sorma</strong></td>
 <td>Was kostet…?</td>
-<td><strong>Was kostet</strong> dieser Mantel?</td>
+<td><strong>Was kostet</strong> dieser Mantel?</td>
 </tr>
 <tr class="odd">
 <td><strong>Ödeme yöntemi</strong></td>
 <td>bar / mit Karte</td>
-<td>Zahlen Sie <strong>bar oder mit Karte</strong>?</td>
+<td>Zahlen Sie <strong>bar oder mit Karte</strong>?</td>
 </tr>
 </tbody>
 </table>
@@ -6044,7 +6089,7 @@ sırada</strong> yer alır.</li>
 <li><strong>Ön ek:</strong> Fiilden kopar ve cümlenin <strong>en
 sonuna</strong> fırlar.</li>
 </ul>
-<p>O¨zne+<strong>C​</strong>ekimli<strong> </strong>Fiil<strong> (</strong>2.<strong> </strong>Sıra<strong>)+⋯+</strong>O¨n<strong> </strong>Ek<strong> (</strong>En<strong> </strong>Sonda**)</p>
+<p>O¨zne+<strong>C​</strong>ekimli<strong> </strong>Fiil<strong> (</strong>2.<strong> </strong>Sıra<strong>)+⋯+</strong>O¨n<strong> </strong>Ek<strong> (</strong>En<strong> </strong>Sonda**)</p>
 <p><em>Örnek:</em> <strong><em>abfahren</em></strong> <em>(hareket etmek
 / kalkmak)</em></p>
 <ul>
@@ -6145,28 +6190,28 @@ U-Bahn)</em></li>
 <tr class="odd">
 <td><strong>abfahren</strong></td>
 <td>kalkmak, hareket etmek</td>
-<td>Der Bus <strong>fährt</strong> um 10 Uhr <strong>ab</strong>.</td>
+<td>Der Bus <strong>fährt</strong> um 10 Uhr <strong>ab</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>ankommen</strong></td>
 <td>varmak</td>
-<td>Der Zug <strong>kommt</strong> pünktlich <strong>an</strong>.</td>
+<td>Der Zug <strong>kommt</strong> pünktlich <strong>an</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>einsteigen</strong></td>
 <td>binmek</td>
-<td>Bitte <strong>steigen</strong> Sie
-schnell <strong>ein</strong>!</td>
+<td>Bitte <strong>steigen</strong> Sie
+schnell <strong>ein</strong>!</td>
 </tr>
 <tr class="even">
 <td><strong>aussteigen</strong></td>
 <td>inmek</td>
-<td>Wo <strong>steigst</strong> du <strong>aus</strong>?</td>
+<td>Wo <strong>steigst</strong> du <strong>aus</strong>?</td>
 </tr>
 <tr class="odd">
 <td><strong>umsteigen</strong></td>
 <td>aktarma yapmak</td>
-<td>Wir <strong>müssen</strong> hier <strong>umsteigen</strong>. <em>(Modal
+<td>Wir <strong>müssen</strong> hier <strong>umsteigen</strong>. <em>(Modal
 fiille sona mastar gider)</em></td>
 </tr>
 </tbody>
@@ -6219,7 +6264,7 @@ eklenir ve artikel <strong>die</strong> olur. Çoğulunda ise
 </tr>
 <tr class="even">
 <td><strong>der Arzt</strong></td>
-<td><strong>die Ärztin</strong> <em>(umlaut alır)</em></td>
+<td><strong>die Ärztin</strong> <em>(umlaut alır)</em></td>
 <td>die Ärztinnen</td>
 <td>doktor</td>
 </tr>
@@ -6249,7 +6294,7 @@ eklenir ve artikel <strong>die</strong> olur. Çoğulunda ise
 </tr>
 <tr class="odd">
 <td><strong>der Koch</strong></td>
-<td><strong>die Köchin</strong> <em>(umlaut alır)</em></td>
+<td><strong>die Köchin</strong> <em>(umlaut alır)</em></td>
 <td>die Köchinnen</td>
 <td>aşçı</td>
 </tr>
@@ -6273,7 +6318,7 @@ kullanılır.</p>
 <strong>hiç çekimlenmeden (mastar -en haliyle) cümlenin en
 sonuna</strong> gider.</li>
 </ul>
-<p>O¨zne+<strong>Modal</strong> <strong>Fiil</strong> (<strong>2.</strong> <strong>Sıra</strong>)+⋯+<strong>Asıl</strong> <strong>Fiil</strong> (<strong>Mastar</strong> − <strong>En</strong> <strong>Sonda</strong>)</p>
+<p>O¨zne+<strong>Modal</strong> <strong>Fiil</strong> (<strong>2.</strong> <strong>Sıra</strong>)+⋯+<strong>Asıl</strong> <strong>Fiil</strong> (<strong>Mastar</strong> − <strong>En</strong> <strong>Sonda</strong>)</p>
 <ul>
 <li><em>Ich</em> <strong><em>kann</em></strong> <em>gut Deutsch</em>
 <strong><em>sprechen</em></strong><em>.</em> <em>(İyi Almanca
@@ -6333,9 +6378,9 @@ ikisi de hiçbir ek almaz (<strong>-t veya -e eki gelmez</strong>).</li>
 <tbody>
 <tr class="odd">
 <td><strong>ich</strong></td>
-<td><strong>kann</strong> <em>(ek almaz)</em></td>
-<td><strong>muss</strong> <em>(ek almaz)</em></td>
-<td><strong>will</strong> <em>(ek almaz)</em></td>
+<td><strong>kann</strong> <em>(ek almaz)</em></td>
+<td><strong>muss</strong> <em>(ek almaz)</em></td>
+<td><strong>will</strong> <em>(ek almaz)</em></td>
 </tr>
 <tr class="even">
 <td><strong>du</strong></td>
@@ -6345,9 +6390,9 @@ ikisi de hiçbir ek almaz (<strong>-t veya -e eki gelmez</strong>).</li>
 </tr>
 <tr class="odd">
 <td><strong>er / sie / es</strong></td>
-<td><strong>kann</strong> <em>(ek almaz)</em></td>
-<td><strong>muss</strong> <em>(ek almaz)</em></td>
-<td><strong>will</strong> <em>(ek almaz)</em></td>
+<td><strong>kann</strong> <em>(ek almaz)</em></td>
+<td><strong>muss</strong> <em>(ek almaz)</em></td>
+<td><strong>will</strong> <em>(ek almaz)</em></td>
 </tr>
 <tr class="even">
 <td><strong>wir</strong></td>
@@ -6401,20 +6446,20 @@ Siemens.)</em></li>
 <tr class="odd">
 <td><strong>können</strong></td>
 <td>yapabilmek</td>
-<td>Er <strong>kann</strong></td>
-<td>Er <strong>kann</strong> Gitarre <strong>spielen</strong>.</td>
+<td>Er <strong>kann</strong></td>
+<td>Er <strong>kann</strong> Gitarre <strong>spielen</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>müssen</strong></td>
 <td>zorunda olmak</td>
-<td>Ich <strong>muss</strong></td>
-<td>Ich <strong>muss</strong> heute früh <strong>schlafen</strong>.</td>
+<td>Ich <strong>muss</strong></td>
+<td>Ich <strong>muss</strong> heute früh <strong>schlafen</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>wollen</strong></td>
 <td>istemek</td>
-<td>Wir <strong>wollen</strong></td>
-<td>Wir <strong>wollen</strong> Urlaub <strong>machen</strong>.</td>
+<td>Wir <strong>wollen</strong></td>
+<td>Wir <strong>wollen</strong> Urlaub <strong>machen</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -6543,27 +6588,27 @@ dinlenin.)</em></li>
 <tr class="odd">
 <td><strong>Tekil organ ağrısı</strong></td>
 <td>Mein/e … tut weh</td>
-<td>Mein <strong>Hals tut weh</strong>.</td>
+<td>Mein <strong>Hals tut weh</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>Çoğul organ ağrısı</strong></td>
 <td>Meine … tun weh</td>
-<td>Meine <strong>Ohren tun weh</strong>.</td>
+<td>Meine <strong>Ohren tun weh</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>Bileşik ağrı ismi</strong></td>
 <td>haben + …schmerzen</td>
-<td>Ich habe <strong>Zahnschmerzen</strong>.</td>
+<td>Ich habe <strong>Zahnschmerzen</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>Genel belirti</strong></td>
 <td>haben + Belirti</td>
-<td>Er hat <strong>Fieber und Husten</strong>.</td>
+<td>Er hat <strong>Fieber und Husten</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>Doktora gitme</strong></td>
 <td>gehen/müssen + zum Arzt</td>
-<td>Ich muss <strong>zum Arzt</strong> gehen.</td>
+<td>Ich muss <strong>zum Arzt</strong> gehen.</td>
 </tr>
 </tbody>
 </table>
@@ -6647,35 +6692,35 @@ kullanılır. Bu fiil düzensizdir:</p>
 <tbody>
 <tr class="odd">
 <td><strong>ich</strong></td>
-<td><strong>mag</strong> <em>(ek almaz)</em></td>
-<td>Ich <strong>mag</strong> Musik. <em>(Müziği severim.)</em></td>
+<td><strong>mag</strong> <em>(ek almaz)</em></td>
+<td>Ich <strong>mag</strong> Musik. <em>(Müziği severim.)</em></td>
 </tr>
 <tr class="even">
 <td><strong>du</strong></td>
 <td>magst</td>
-<td><strong>Magst</strong> du Pizza? <em>(Pizza sever misin?)</em></td>
+<td><strong>Magst</strong> du Pizza? <em>(Pizza sever misin?)</em></td>
 </tr>
 <tr class="odd">
 <td><strong>er / sie / es</strong></td>
-<td><strong>mag</strong> <em>(ek almaz)</em></td>
-<td>Er <strong>mag</strong> keinen Sport. <em>(Spor sevmez.)</em></td>
+<td><strong>mag</strong> <em>(ek almaz)</em></td>
+<td>Er <strong>mag</strong> keinen Sport. <em>(Spor sevmez.)</em></td>
 </tr>
 <tr class="even">
 <td><strong>wir</strong></td>
 <td>mögen</td>
-<td>Wir <strong>mögen</strong> Schokolade. <em>(Çikolata
+<td>Wir <strong>mögen</strong> Schokolade. <em>(Çikolata
 severiz.)</em></td>
 </tr>
 <tr class="odd">
 <td><strong>ihr</strong></td>
 <td>mögt</td>
-<td><strong>Mögt</strong> ihr Filme? <em>(Filmleri sever
+<td><strong>Mögt</strong> ihr Filme? <em>(Filmleri sever
 misiniz?)</em></td>
 </tr>
 <tr class="even">
 <td><strong>sie / Sie</strong></td>
 <td>mögen</td>
-<td>Sie <strong>mögen</strong> Tiere. <em>(Hayvanları
+<td>Sie <strong>mögen</strong> Tiere. <em>(Hayvanları
 severler.)</em></td>
 </tr>
 </tbody>
@@ -6723,27 +6768,27 @@ vaktin var mı?)</em></p>
 <tr class="odd">
 <td><strong>Eylemi sevmek</strong></td>
 <td>Fiil + gern</td>
-<td>Ich <strong>lese gern</strong> Romane.</td>
+<td>Ich <strong>lese gern</strong> Romane.</td>
 </tr>
 <tr class="even">
 <td><strong>Eylemi sevmemek</strong></td>
 <td>Fiil + nicht gern</td>
-<td>Ich <strong>putze nicht gern</strong>.</td>
+<td>Ich <strong>putze nicht gern</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>Tercih belirtmek</strong></td>
 <td>Fiil + lieber</td>
-<td>Ich bleibe heute <strong>lieber</strong> zu Hause.</td>
+<td>Ich bleibe heute <strong>lieber</strong> zu Hause.</td>
 </tr>
 <tr class="even">
 <td><strong>Nesneyi sevmek</strong></td>
 <td>mögen + İsim (Akk.)</td>
-<td>Ich <strong>mag</strong> italienisches Essen.</td>
+<td>Ich <strong>mag</strong> italienisches Essen.</td>
 </tr>
 <tr class="odd">
 <td><strong>Hobi söylemek</strong></td>
 <td>Mein Hobby ist…</td>
-<td>Mein Hobby ist <strong>Fotografieren</strong>.</td>
+<td>Mein Hobby ist <strong>Fotografieren</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -6883,28 +6928,28 @@ nasıl?)</em></li>
 <tbody>
 <tr class="odd">
 <td><strong>Şehre/Ülkeye gitme</strong></td>
-<td>fahren/fliegen + <strong>nach</strong></td>
-<td>Ich fliege <strong>nach</strong> Spanien.</td>
+<td>fahren/fliegen + <strong>nach</strong></td>
+<td>Ich fliege <strong>nach</strong> Spanien.</td>
 </tr>
 <tr class="even">
 <td><strong>Su kenarına gitme</strong></td>
-<td>fahren + <strong>ans</strong> (an das)</td>
-<td>Wir fahren <strong>ans</strong> Meer.</td>
+<td>fahren + <strong>ans</strong> (an das)</td>
+<td>Wir fahren <strong>ans</strong> Meer.</td>
 </tr>
 <tr class="odd">
 <td><strong>Hava sıfatı</strong></td>
 <td>es ist + Sıfat</td>
-<td>Es ist heute sehr <strong>windig</strong>.</td>
+<td>Es ist heute sehr <strong>windig</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>Yağış fiili</strong></td>
 <td>es + Fiil</td>
-<td>Es <strong>regnet</strong> den ganzen Tag.</td>
+<td>Es <strong>regnet</strong> den ganzen Tag.</td>
 </tr>
 <tr class="odd">
 <td><strong>Sıcaklık</strong></td>
 <td>es sind + Sayı + Grad</td>
-<td>Es sind heute <strong>22 Grad</strong>.</td>
+<td>Es sind heute <strong>22 Grad</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -6931,7 +6976,7 @@ geçmiş zaman” (<em>gittim, yaptım, öğrendim</em>) karşılığıdır.</p>
 <li><strong>Esas Fiil (Partizip II - ge…t / ge…en):</strong> Cümlenin
 <strong>en sonuna</strong> gider ve hiçbir özneye göre değişmez.</li>
 </ul>
-<p>O¨zne+<strong>haben/sein</strong> (<strong>2.</strong> <strong>sıra</strong>)+⋯+<strong>Partizip</strong> <strong>II</strong> (<strong>En</strong> <strong>sonda</strong>)</p>
+<p>O¨zne+<strong>haben/sein</strong> (<strong>2.</strong> <strong>sıra</strong>)+⋯+<strong>Partizip</strong> <strong>II</strong> (<strong>En</strong> <strong>sonda</strong>)</p>
 <ul>
 <li><em>Ich</em> <strong><em>habe</em></strong> <em>gestern Deutsch</em>
 <strong><em>gelernt</em></strong><em>.</em> <em>(Dün Almanca
@@ -7043,32 +7088,32 @@ mıydı?)</em></li>
 <tr class="odd">
 <td><strong>Düzenli + haben</strong></td>
 <td>haben + ge…t</td>
-<td>Ich <strong>habe</strong> eine Pizza <strong>gemacht</strong>.</td>
+<td>Ich <strong>habe</strong> eine Pizza <strong>gemacht</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>Hareket + sein</strong></td>
 <td>sein + ge…en</td>
-<td>Wir <strong>sind</strong> nach Hause <strong>gefahren</strong>.</td>
+<td>Wir <strong>sind</strong> nach Hause <strong>gefahren</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>Durgun/Kalmak (sein)</strong></td>
 <td>sein + ge…en</td>
-<td>Er <strong>ist</strong> im Hotel <strong>geblieben</strong>.</td>
+<td>Er <strong>ist</strong> im Hotel <strong>geblieben</strong>.</td>
 </tr>
 <tr class="even">
 <td><strong>-ieren fiili</strong></td>
 <td>haben + …iert</td>
-<td>Sie <strong>hat</strong> gestern <strong>telefoniert</strong>.</td>
+<td>Sie <strong>hat</strong> gestern <strong>telefoniert</strong>.</td>
 </tr>
 <tr class="odd">
 <td><strong>Geçmişte olmak</strong></td>
 <td>war / warst / waren</td>
-<td>Ich <strong>war</strong> krank.</td>
+<td>Ich <strong>war</strong> krank.</td>
 </tr>
 <tr class="even">
 <td><strong>Geçmişte sahip olmak</strong></td>
 <td>hatte / hattest / hatten</td>
-<td>Ich <strong>hatte</strong> Kopfschmerzen.</td>
+<td>Ich <strong>hatte</strong> Kopfschmerzen.</td>
 </tr>
 </tbody>
 </table>
@@ -7147,27 +7192,27 @@ Zaman Kullanılır?</th>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Nominativ</strong> (Yalın)</td>
-<td><strong>der</strong> / ein / kein</td>
-<td><strong>das</strong> / ein / kein</td>
-<td><strong>die</strong> / eine / keine</td>
-<td><strong>die</strong> / — / keine</td>
+<td><strong>Nominativ</strong> (Yalın)</td>
+<td><strong>der</strong> / ein / kein</td>
+<td><strong>das</strong> / ein / kein</td>
+<td><strong>die</strong> / eine / keine</td>
+<td><strong>die</strong> / — / keine</td>
 <td>Cümlenin öznesi</td>
 </tr>
 <tr class="even">
-<td><strong>Akkusativ</strong> (-i Hali)</td>
-<td><strong>den</strong> / einen / keinen</td>
-<td><strong>das</strong> / ein / kein</td>
-<td><strong>die</strong> / eine / keine</td>
-<td><strong>die</strong> / — / keine</td>
-<td>Doğrudan nesne, <em>es gibt</em>, <em>kaufen, haben, essen</em></td>
+<td><strong>Akkusativ</strong> (-i Hali)</td>
+<td><strong>den</strong> / einen / keinen</td>
+<td><strong>das</strong> / ein / kein</td>
+<td><strong>die</strong> / eine / keine</td>
+<td><strong>die</strong> / — / keine</td>
+<td>Doğrudan nesne, <em>es gibt</em>, <em>kaufen, haben, essen</em></td>
 </tr>
 <tr class="odd">
-<td><strong>Dativ</strong> (-e / -de Hali)</td>
-<td><strong>dem</strong> / einem / keinem</td>
-<td><strong>dem</strong> / einem / keinem</td>
-<td><strong>der</strong> / einer / keiner</td>
-<td><strong>den (+n)</strong> / keinen (+n)</td>
+<td><strong>Dativ</strong> (-e / -de Hali)</td>
+<td><strong>dem</strong> / einem / keinem</td>
+<td><strong>dem</strong> / einem / keinem</td>
+<td><strong>der</strong> / einer / keiner</td>
+<td><strong>den (+n)</strong> / keinen (+n)</td>
 <td>Edatlar (<em>mit, bei, von, zu, aus, nach</em>)</td>
 </tr>
 </tbody>
@@ -8562,6 +8607,219 @@ startA1Vocab = function(){
 _a1LessonWordsCache.clear();
 /* ===== END A1 VOCAB REPAIR ===== */
 
+/* ===== SADECE KELİME ÇALIŞMASI: A1 KONU KATEGORİLERİ ===== */
+const A1_CATEGORY_DATA = {
+  food: [
+    ['Apfel','der','elma'],['Banane','die','muz'],['Birne','die','armut'],['Erdbeere','die','çilek'],
+    ['Orange','die','portakal'],['Zitrone','die','limon'],['Kirsche','die','kiraz'],['Weintraube','die','üzüm'],
+    ['Pfirsich','der','şeftali'],['Melone','die','kavun'],['Tomate','die','domates'],['Gurke','die','salatalık'],
+    ['Kartoffel','die','patates'],['Zwiebel','die','soğan'],['Knoblauch','der','sarımsak'],['Karotte','die','havuç'],
+    ['Paprika','die','biber'],['Salat','der','salata, marul'],['Spinat','der','ıspanak'],['Pilz','der','mantar'],
+    ['Zucchini','die','kabak'],['Aubergine','die','patlıcan'],['Brokkoli','der','brokoli'],['Blumenkohl','der','karnabahar'],
+    ['Erbse','die','bezelye'],['Bohne','die','fasulye'],['Mais','der','mısır'],['Petersilie','die','maydanoz'],
+    ['Lauch','der','pırasa'],['Ingwer','der','zencefil'],['Brot','das','ekmek'],['Brötchen','das','küçük ekmek'],
+    ['Reis','der','pirinç, pilav'],['Nudeln','die','makarna'],['Mehl','das','un'],['Zucker','der','şeker'],
+    ['Salz','das','tuz'],['Pfeffer','der','karabiber'],['Ei','das','yumurta'],['Käse','der','peynir'],
+    ['Milch','die','süt'],['Butter','die','tereyağı'],['Joghurt','der','yoğurt'],['Fleisch','das','et'],
+    ['Hähnchen','das','tavuk eti'],['Wurst','die','sosis'],['Fisch','der','balık'],['Suppe','die','çorba'],
+    ['Kuchen','der','kek, pasta'],['Schokolade','die','çikolata'],['Eis','das','dondurma'],['Marmelade','die','reçel'],
+    ['Wasser','das','su'],['Kaffee','der','kahve'],['Tee','der','çay'],['Saft','der','meyve suyu'],
+    ['Limonade','die','limonata, gazoz'],['Frühstück','das','kahvaltı'],['Mittagessen','das','öğle yemeği'],
+    ['Abendessen','das','akşam yemeği']
+  ],
+  clothing: [
+    ['Hose','die','pantolon'],['Jeans','die','kot pantolon'],['T-Shirt','das','tişört'],['Hemd','das','gömlek'],
+    ['Bluse','die','bluz'],['Pullover','der','kazak'],['Jacke','die','ceket'],['Mantel','der','palto, kaban'],
+    ['Kleid','das','elbise'],['Rock','der','etek'],['Schuh','der','ayakkabı'],['Stiefel','der','çizme'],
+    ['Sandale','die','sandalet'],['Socke','die','çorap'],['Strumpf','der','uzun çorap'],['Unterwäsche','die','iç çamaşırı'],
+    ['Schlafanzug','der','pijama'],['Anzug','der','takım elbise'],['Gürtel','der','kemer'],['Mütze','die','bere'],
+    ['Hut','der','şapka'],['Schal','der','atkı, fular'],['Handschuh','der','eldiven'],['Tasche','die','çanta'],
+    ['Rucksack','der','sırt çantası'],['Brille','die','gözlük'],['Uhr','die','saat'],['Ring','der','yüzük'],
+    ['Kette','die','kolye'],['Ohrring','der','küpe']
+  ],
+  calendar: [
+    ['Montag','der','pazartesi'],['Dienstag','der','salı'],['Mittwoch','der','çarşamba'],
+    ['Donnerstag','der','perşembe'],['Freitag','der','cuma'],['Samstag','der','cumartesi'],['Sonntag','der','pazar'],
+    ['Januar','der','ocak'],['Februar','der','şubat'],['März','der','mart'],['April','der','nisan'],
+    ['Mai','der','mayıs'],['Juni','der','haziran'],['Juli','der','temmuz'],['August','der','ağustos'],
+    ['September','der','eylül'],['Oktober','der','ekim'],['November','der','kasım'],['Dezember','der','aralık'],
+    ['Frühling','der','ilkbahar'],['Sommer','der','yaz'],['Herbst','der','sonbahar'],['Winter','der','kış'],
+    ['Wochentag','der','hafta içi günü'],['Wochenende','das','hafta sonu'],['Monat','der','ay'],
+    ['Jahreszeit','die','mevsim'],['Jahr','das','yıl']
+  ],
+  home_rooms: [
+    ['Haus','das','ev'],['Wohnung','die','daire'],['Zimmer','das','oda'],['Wohnzimmer','das','oturma odası'],
+    ['Schlafzimmer','das','yatak odası'],['Küche','die','mutfak'],['Bad','das','banyo'],['Badezimmer','das','banyo'],
+    ['Toilette','die','tuvalet'],['WC','das','tuvalet'],['Flur','der','koridor, antre'],['Korridor','der','koridor'],
+    ['Balkon','der','balkon'],['Terrasse','die','teras'],['Garten','der','bahçe'],['Keller','der','bodrum'],
+    ['Garage','die','garaj'],['Treppe','die','merdiven'],['Fenster','das','pencere'],['Tür','die','kapı']
+  ],
+  home_items: [
+    ['Tisch','der','masa'],['Schreibtisch','der','çalışma masası'],['Stuhl','der','sandalye'],['Sessel','der','tekli koltuk'],
+    ['Sofa','das','kanepe'],['Couch','die','kanepe, koltuk'],['Bett','das','yatak'],['Schrank','der','dolap'],
+    ['Kleiderschrank','der','gardırop'],['Regal','das','raf, kitaplık'],['Teppich','der','halı'],['Lampe','die','lamba'],
+    ['Kissen','das','yastık, minder'],['Decke','die','battaniye, örtü'],['Spiegel','der','ayna'],['Bild','das','tablo, resim'],
+    ['Kühlschrank','der','buzdolabı'],['Herd','der','ocak'],['Backofen','der','fırın'],['Spülmaschine','die','bulaşık makinesi'],
+    ['Kaffeemaschine','die','kahve makinesi'],['Wasserkocher','der','su ısıtıcısı'],['Mikrowelle','die','mikrodalga fırın'],
+    ['Teller','der','tabak'],['Tasse','die','fincan, kupa'],['Glas','das','bardak'],['Schüssel','die','kase'],
+    ['Pfanne','die','tava'],['Topf','der','tencere'],['Besteck','das','çatal-bıçak takımı'],['Löffel','der','kaşık'],
+    ['Gabel','die','çatal'],['Messer','das','bıçak'],['Waschmaschine','die','çamaşır makinesi'],['Dusche','die','duş'],
+    ['Badewanne','die','küvet'],['Waschbecken','das','lavabo'],['Handtuch','das','havlu'],['Seife','die','sabun'],
+    ['Shampoo','das','şampuan'],['Zahnbürste','die','diş fırçası'],['Zahnpasta','die','diş macunu'],['Föhn','der','saç kurutma makinesi'],
+    ['Staubsauger','der','elektrikli süpürge'],['Mülleimer','der','çöp kovası']
+  ],
+  family: [
+    ['Familie','die','aile'],['Eltern','die','ebeveynler'],['Vater','der','baba'],['Mutter','die','anne'],
+    ['Sohn','der','erkek çocuk'],['Tochter','die','kız çocuk'],['Kind','das','çocuk'],['Kinder','die','çocuklar'],
+    ['Geschwister','die','kardeşler'],['Bruder','der','erkek kardeş'],['Schwester','die','kız kardeş'],['Großeltern','die','büyükanne ve büyükbaba'],
+    ['Großvater','der','büyükbaba, dede'],['Opa','der','dede'],['Großmutter','die','büyükanne, nine'],['Oma','die','nine'],
+    ['Enkelkind','das','torun'],['Onkel','der','amca, dayı'],['Tante','die','hala, teyze'],['Cousin','der','erkek kuzen'],
+    ['Cousine','die','kız kuzen'],['Mann','der','adam, koca'],['Ehemann','der','eş, koca'],['Frau','die','kadın, eş'],
+    ['Ehefrau','die','eş'],['Freund','der','erkek arkadaş, sevgili'],['Freundin','die','kadın arkadaş, sevgili'],['Baby','das','bebek']
+  ],
+  body_health: [
+    ['Körper','der','vücut'],['Kopf','der','baş, kafa'],['Haar','das','saç teli'],['Haare','die','saçlar'],
+    ['Gesicht','das','yüz'],['Auge','das','göz'],['Augen','die','gözler'],['Ohr','das','kulak'],['Ohren','die','kulaklar'],
+    ['Nase','die','burun'],['Mund','der','ağız'],['Zahn','der','diş'],['Zähne','die','dişler'],['Hals','der','boyun, boğaz'],
+    ['Schulter','die','omuz'],['Rücken','der','sırt'],['Brust','die','göğüs'],['Bauch','der','karın'],['Arm','der','kol'],
+    ['Arme','die','kollar'],['Hand','die','el'],['Hände','die','eller'],['Finger','der','parmak'],['Bein','das','bacak'],
+    ['Beine','die','bacaklar'],['Knie','das','diz'],['Fuß','der','ayak'],['Füße','die','ayaklar'],['Gesundheit','die','sağlık'],
+    ['Arzt','der','erkek doktor'],['Ärztin','die','kadın doktor'],['Praxis','die','muayenehane'],['Krankenhaus','das','hastane'],
+    ['Apotheke','die','eczane'],['Medikament','das','ilaç'],['Medizin','die','ilaç'],['Pflaster','das','yara bandı'],
+    ['Fieber','das','ateş'],['Schmerz','der','ağrı'],['Schmerzen','die','ağrılar'],['Husten','der','öksürük'],
+    ['Schnupfen','der','nezle'],['Rezept','das','reçete'],['Termin','der','randevu']
+  ],
+  city_transport: [
+    ['Stadt','die','şehir'],['Dorf','das','köy'],['Straße','die','sokak, cadde'],['Platz','der','meydan'],
+    ['Bahnhof','der','tren garı'],['Flughafen','der','havalimanı'],['Haltestelle','die','durak'],['Supermarkt','der','süpermarket'],
+    ['Bäckerei','die','fırın, pastane'],['Metzgerei','die','kasap'],['Fleischerei','die','kasap'],['Restaurant','das','restoran'],
+    ['Café','das','kafe'],['Hotel','das','otel'],['Bank','die','banka'],['Post','die','postane'],['Museum','das','müze'],
+    ['Kino','das','sinema'],['Theater','das','tiyatro'],['Schule','die','okul'],['Universität','die','üniversite'],['Uni','die','üniversite'],
+    ['Bibliothek','die','kütüphane'],['Kirche','die','kilise'],['Moschee','die','cami'],['Park','der','park'],['Schwimmbad','das','yüzme havuzu'],
+    ['Auto','das','araba'],['Bus','der','otobüs'],['Zug','der','tren'],['Bahn','die','tren, demiryolu'],['U-Bahn','die','metro'],
+    ['S-Bahn','die','banliyö treni'],['Straßenbahn','die','tramvay'],['Tram','die','tramvay'],['Fahrrad','das','bisiklet'],
+    ['Taxi','das','taksi'],['Flugzeug','das','uçak'],['Schiff','das','gemi'],['Fahrkarte','die','bilet'],['Ticket','das','bilet'],
+    ['Fahrplan','der','tarife, sefer saatleri'],['Gleis','das','peron, ray hattı'],['Ampel','die','trafik ışığı'],['Kreuzung','die','kavşak'],
+    ['links','','sol','adverb'],['nach links','','sola','other'],['rechts','','sağ','adverb'],['nach rechts','','sağa','other'],
+    ['geradeaus','','dümdüz','adverb'],['an der Ecke','','köşede','other']
+  ],
+  jobs: [
+    ['Arbeit','die','iş'],['Beruf','der','meslek'],['Job','der','iş'],['Firma','die','şirket'],['Büro','das','ofis'],
+    ['Kollege','der','erkek iş arkadaşı'],['Kollegin','die','kadın iş arkadaşı'],['Chef','der','erkek müdür'],['Chefin','die','kadın müdür'],
+    ['Lehrer','der','erkek öğretmen'],['Lehrerin','die','kadın öğretmen'],['Schüler','der','erkek öğrenci'],['Schülerin','die','kız öğrenci'],
+    ['Student','der','erkek üniversite öğrencisi'],['Studentin','die','kadın üniversite öğrencisi'],['Arzt','der','erkek doktor'],['Ärztin','die','kadın doktor'],
+    ['Krankenpfleger','der','erkek hemşire'],['Krankenschwester','die','kadın hemşire'],['Kellner','der','erkek garson'],['Kellnerin','die','kadın garson'],
+    ['Koch','der','erkek aşçı'],['Köchin','die','kadın aşçı'],['Verkäufer','der','erkek satış görevlisi'],['Verkäuferin','die','kadın satış görevlisi'],
+    ['Polizist','der','erkek polis'],['Polizistin','die','kadın polis'],['Fahrer','der','erkek şoför'],['Fahrerin','die','kadın şoför'],
+    ['Ingenieur','der','erkek mühendis'],['Ingenieurin','die','kadın mühendis'],['Handwerker','der','erkek usta, zanaatkâr'],['Handwerkerin','die','kadın usta, zanaatkâr'],
+    ['arbeitslos','','işsiz','adjective']
+  ],
+  school_office: [
+    ['Buch','das','kitap'],['Heft','das','defter'],['Stift','der','kalem'],['Bleistift','der','kurşun kalem'],
+    ['Kugelschreiber','der','tükenmez kalem'],['Kuli','der','tükenmez kalem'],['Mäppchen','das','kalemlik'],['Lineal','das','cetvel'],
+    ['Radiergummi','der','silgi'],['Schere','die','makas'],['Papier','das','kağıt'],['Schultasche','die','okul çantası'],
+    ['Computer','der','bilgisayar'],['PC','der','bilgisayar'],['Laptop','der','dizüstü bilgisayar'],['Handy','das','cep telefonu'],
+    ['Smartphone','das','akıllı telefon'],['E-Mail','die','e-posta'],['Nachricht','die','mesaj, haber'],['Drucker','der','yazıcı'],
+    ['Wörterbuch','das','sözlük'],['Kurs','der','kurs'],['Hausaufgabe','die','ev ödevi'],['Prüfung','die','sınav'],['Test','der','test']
+  ],
+  nature_weather: [
+    ['Wetter','das','hava durumu'],['Sonne','die','güneş'],['Regen','der','yağmur'],['Schnee','der','kar'],
+    ['Wind','der','rüzgâr'],['Wolke','die','bulut'],['Nebel','der','sis'],['Gewitter','das','gök gürültülü fırtına'],['Grad','der','derece'],
+    ['sonnig','','güneşli','adjective'],['regnerisch','','yağmurlu','adjective'],['windig','','rüzgârlı','adjective'],['bewölkt','','bulutlu','adjective'],
+    ['warm','','ılık, sıcak','adjective'],['heiß','','çok sıcak','adjective'],['kalt','','soğuk','adjective'],
+    ['Baum','der','ağaç'],['Blume','die','çiçek'],['Wald','der','orman'],['Berg','der','dağ'],['Meer','das','deniz'],
+    ['See','die','deniz'],['See','der','göl'],['Fluss','der','nehir'],['Strand','der','plaj']
+  ],
+  animals: [
+    ['Tier','das','hayvan'],['Haustier','das','evcil hayvan'],['Haustiere','die','evcil hayvanlar'],['Hund','der','köpek'],
+    ['Katze','die','kedi'],['Vogel','der','kuş'],['Pferd','das','at'],['Kuh','die','inek'],['Schaf','das','koyun'],
+    ['Huhn','das','tavuk'],['Maus','die','fare'],['Fisch','der','balık']
+  ],
+  colors: [
+    ['weiß','','beyaz','adjective'],['schwarz','','siyah','adjective'],['grau','','gri','adjective'],['rot','','kırmızı','adjective'],
+    ['blau','','mavi','adjective'],['gelb','','sarı','adjective'],['grün','','yeşil','adjective'],['orange','','turuncu','adjective'],
+    ['lila','','mor','adjective'],['violett','','mor','adjective'],['rosa','','pembe','adjective'],['braun','','kahverengi','adjective'],
+    ['hell','','açık renk','adjective'],['dunkel','','koyu renk','adjective']
+  ],
+  numbers_quantities: [
+    ['eins','','bir','other'],['zwei','','iki','other'],['drei','','üç','other'],['vier','','dört','other'],['fünf','','beş','other'],
+    ['sechs','','altı','other'],['sieben','','yedi','other'],['acht','','sekiz','other'],['neun','','dokuz','other'],['zehn','','on','other'],
+    ['elf','','on bir','other'],['zwölf','','on iki','other'],['dreizehn','','on üç','other'],['vierzehn','','on dört','other'],['fünfzehn','','on beş','other'],
+    ['sechzehn','','on altı','other'],['siebzehn','','on yedi','other'],['achtzehn','','on sekiz','other'],['neunzehn','','on dokuz','other'],['zwanzig','','yirmi','other'],
+    ['dreißig','','otuz','other'],['vierzig','','kırk','other'],['fünfzig','','elli','other'],['sechzig','','altmış','other'],['siebzig','','yetmiş','other'],
+    ['achtzig','','seksen','other'],['neunzig','','doksan','other'],['einhundert','','yüz','other'],['eintausend','','bin','other'],
+    ['Kilogramm','das','kilogram'],['Gramm','das','gram'],['Liter','der','litre'],['Flasche','die','şişe'],['Dose','die','kutu, konserve kutusu'],
+    ['Packung','die','paket'],['Stück','das','tane, adet, parça'],['viel','','çok','other'],['wenig','','az','other'],
+    ['alles','','her şey','other'],['nichts','','hiçbir şey','other']
+  ],
+  adjectives: [
+    ['gut','','iyi','adjective'],['schlecht','','kötü','adjective'],['groß','','büyük','adjective'],['klein','','küçük','adjective'],
+    ['neu','','yeni','adjective'],['alt','','eski, yaşlı','adjective'],['jung','','genç','adjective'],['schön','','güzel','adjective'],
+    ['hässlich','','çirkin','adjective'],['billig','','ucuz','adjective'],['günstig','','uygun fiyatlı','adjective'],['teuer','','pahalı','adjective'],
+    ['schnell','','hızlı','adjective'],['langsam','','yavaş','adjective'],['früh','','erken','adjective'],['spät','','geç','adjective'],
+    ['hell','','aydınlık','adjective'],['dunkel','','karanlık','adjective'],['sauber','','temiz','adjective'],['schmutzig','','kirli','adjective'],
+    ['einfach','','kolay','adjective'],['leicht','','kolay, hafif','adjective'],['schwer','','zor, ağır','adjective'],['schwierig','','zor','adjective'],
+    ['richtig','','doğru','adjective'],['falsch','','yanlış','adjective'],['laut','','sesli, gürültülü','adjective'],['leise','','sessiz','adjective'],
+    ['voll','','dolu','adjective'],['leer','','boş','adjective'],['offen','','açık','adjective'],['geöffnet','','açık','adjective'],
+    ['geschlossen','','kapalı','adjective'],['müde','','yorgun','adjective'],['krank','','hasta','adjective'],['gesund','','sağlıklı','adjective'],
+    ['wichtig','','önemli','adjective']
+  ],
+  verbs: [
+    ['sein','','olmak','verb'],['haben','','sahip olmak','verb'],['werden','','olmak, hâline gelmek','verb'],
+    ['können','','-ebilmek','verb'],['müssen','','zorunda olmak','verb'],['wollen','','istemek','verb'],['möchten','','istemek, arzu etmek','verb'],
+    ['dürfen','','izinli olmak','verb'],['sollen','','-meli, -malı','verb'],['sprechen','','konuşmak','verb'],['verstehen','','anlamak','verb'],
+    ['hören','','duymak, dinlemek','verb'],['sehen','','görmek','verb'],['lesen','','okumak','verb'],['schreiben','','yazmak','verb'],
+    ['lernen','','öğrenmek','verb'],['fragen','','sormak','verb'],['antworten','','cevap vermek','verb'],['wissen','','bilmek','verb'],
+    ['kennen','','tanımak','verb'],['wohnen','','ikamet etmek','verb'],['leben','','yaşamak','verb'],['arbeiten','','çalışmak','verb'],
+    ['kaufen','','satın almak','verb'],['verkaufen','','satmak','verb'],['kosten','','fiyatı olmak','verb'],['bezahlen','','ödemek','verb'],
+    ['brauchen','','ihtiyaç duymak','verb'],['suchen','','aramak','verb'],['finden','','bulmak','verb'],['helfen','','yardım etmek','verb'],
+    ['gehen','','yürümek, gitmek','verb'],['fahren','','araçla gitmek, sürmek','verb'],['fliegen','','uçmak','verb'],['kommen','','gelmek','verb'],
+    ['bleiben','','kalmak','verb'],['reisen','','seyahat etmek','verb'],['essen','','yemek','verb'],['trinken','','içmek','verb'],
+    ['kochen','','pişirmek','verb'],['schlafen','','uyumak','verb'],['aufstehen','','uyanıp kalkmak','verb'],['anrufen','','telefonla aramak','verb'],
+    ['fernsehen','','televizyon izlemek','verb'],['einkaufen','','alışveriş yapmak','verb']
+  ]
+};
+
+const A1_CATEGORY_LABELS = {
+  food:'Yiyecek ve içecekler', clothing:'Kıyafet ve aksesuarlar', calendar:'Günler, aylar ve mevsimler',
+  home_rooms:'Evin bölümleri ve odalar', home_items:'Ev eşyaları ve mobilyalar', family:'Aile ve akrabalar',
+  body_health:'Vücut ve sağlık', city_transport:'Şehir, ulaşım ve yol tarifi', jobs:'Meslekler ve iş hayatı',
+  school_office:'Okul, büro ve kırtasiye', nature_weather:'Doğa, hava ve coğrafya', animals:'Hayvanlar',
+  colors:'Renkler', numbers_quantities:'Sayılar ve miktarlar', adjectives:'Sıfatlar ve zıt anlamlılar', verbs:'Temel fiiller'
+};
+
+const A1_CATEGORY_WORDS = Object.fromEntries(
+  Object.entries(A1_CATEGORY_DATA).map(([category, rows]) => [category, rows.map(([word, article, tr, type], index) => ({
+    id:`a1study_${category}_${String(index + 1).padStart(3,'0')}`,
+    level:'A1',
+    type:type||(article?'noun':'other'),
+    word,
+    display:article?`${article} ${word}`:word,
+    tr,
+    article,
+    studyCategory:category,
+    sourceSection:'A1 KELİME ÇALIŞMASI'
+  }))])
+);
+
+const a1CategoryFilter=document.getElementById('categoryFilter');
+if(a1CategoryFilter){
+  [...a1CategoryFilter.options].forEach(option=>{
+    if(option.value!=='ALL') option.textContent+=` (${A1_CATEGORY_WORDS[option.value].length})`;
+  });
+  a1CategoryFilter.addEventListener('change',()=>{
+    if(a1CategoryFilter.value!=='ALL'){
+      document.getElementById('levelFilter').value='A1';
+      document.getElementById('typeFilter').value='ALL';
+    }
+    document.getElementById('studyBox').innerHTML='';
+  });
+  document.getElementById('levelFilter').addEventListener('change',event=>{
+    if(!['ALL','A1'].includes(event.target.value)) a1CategoryFilter.value='ALL';
+  });
+}
+/* ===== A1 KONU KATEGORİLERİ SONU ===== */
+
 /* ===== A1 OVERVIEW LAYOUT REPAIR ===== */
 function renderA1AcademySafe(){
   try{ ensureA1Profile(); }catch(e){}
@@ -8622,3 +8880,5 @@ if(document.getElementById('a1academy')?.classList.contains('active')){
 </script>
 </body>
 </html>
+Deutsch3000_A1_Kategoriler.html
+HTML
